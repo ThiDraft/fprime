@@ -2221,15 +2221,13 @@ class MatchFirst(ParseExpression):
                         instring, len(instring), e.errmsg, self
                     )
                     maxExcLoc = len(instring)
-
-        # only got here if no expression matched, raise exception for match that made it the furthest
+            
+        if self.exprs:
+            raise maxException
         else:
-            if self.exprs:
-                raise maxException
-            else:
-                raise ParseException(
-                    instring, loc, "no defined alternatives to match", self
-                )
+            raise ParseException(
+                instring, loc, "no defined alternatives to match", self
+            )
 
     def __ior__(self, other):
         if isinstance(other, str):
