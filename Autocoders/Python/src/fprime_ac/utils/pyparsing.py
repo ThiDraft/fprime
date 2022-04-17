@@ -338,7 +338,6 @@ class ParseResults:
                     v[0].__parent = self
         self.__toklist += other.__toklist
         self.__accumNames.update(other.__accumNames)
-        del other
         return self
 
     def __repr__(self):
@@ -3139,7 +3138,7 @@ def keepOriginalText(s, startLoc, t):
     try:
         endloc = f.f_locals["loc"]
     finally:
-        del f
+        pass
     return s[startLoc:endloc]
 
 
