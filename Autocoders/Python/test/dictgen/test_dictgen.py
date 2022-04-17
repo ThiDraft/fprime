@@ -255,14 +255,14 @@ def check_generated_files(testdir):
     inst2 = topology[1]
 
     # Dict objects
-    inst1_events = [o for o in inst1.get_comp_xml().get_events()]
-    inst2_events = [o for o in inst2.get_comp_xml().get_events()]
-    inst1_commands = [o for o in inst1.get_comp_xml().get_commands()]
-    inst2_commands = [o for o in inst2.get_comp_xml().get_commands()]
-    inst1_channels = [o for o in inst1.get_comp_xml().get_channels()]
-    inst2_channels = [o for o in inst2.get_comp_xml().get_channels()]
-    inst1_parameters = [o for o in inst1.get_comp_xml().get_parameters()]
-    inst2_parameters = [o for o in inst2.get_comp_xml().get_parameters()]
+    inst1_events = list(inst1.get_comp_xml().get_events())
+    inst2_events = list(inst2.get_comp_xml().get_events())
+    inst1_commands = list(inst1.get_comp_xml().get_commands())
+    inst2_commands = list(inst2.get_comp_xml().get_commands())
+    inst1_channels = list(inst1.get_comp_xml().get_channels())
+    inst2_channels = list(inst2.get_comp_xml().get_channels())
+    inst1_parameters = list(inst1.get_comp_xml().get_parameters())
+    inst2_parameters = list(inst2.get_comp_xml().get_parameters())
 
     # Names of dict objects
     inst1_event_names = [o.get_name() for o in inst1_events]
