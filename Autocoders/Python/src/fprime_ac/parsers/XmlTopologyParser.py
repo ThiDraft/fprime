@@ -116,9 +116,11 @@ class XmlTopologyParser:
                 else:
                     self.__base_id_window = None
 
-                if "prepend_instance_name" in e.attrib:
-                    if e.attrib["prepend_instance_name"].upper() == "TRUE":
-                        self.__prepend_instance_name = True
+                if (
+                    "prepend_instance_name" in e.attrib
+                    and e.attrib["prepend_instance_name"].upper() == "TRUE"
+                ):
+                    self.__prepend_instance_name = True
                 #
                 # The deployment attribute added so that instance
                 # dictionaries are installed in the correct place.
