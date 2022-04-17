@@ -508,7 +508,7 @@ class XmlComponentParser:
                         a = None
                     s = None
                     if d == "string":
-                        if not "size" in list(channel.attrib.keys()):
+                        if "size" not in list(channel.attrib.keys()):
                             PRINT.info(
                                 "%s: Telemetry channel %s string value must specify a size"
                                 % (xml_file, n)
@@ -666,7 +666,7 @@ class XmlComponentParser:
                                 t = arg.attrib["type"]
                                 s = None
                                 if t == "string":
-                                    if not "size" in list(arg.attrib.keys()):
+                                    if "size" not in list(arg.attrib.keys()):
                                         PRINT.info(
                                             "%s: Event %s string argument %s must specify a size"
                                             % (xml_file, event.attrib["name"], n)
@@ -805,7 +805,7 @@ class XmlComponentParser:
 
                     s = None
                     if d == "string":
-                        if not "size" in list(parameter.attrib.keys()):
+                        if "size" not in list(parameter.attrib.keys()):
                             PRINT.info(
                                 "%s: Parameter %s string value must specify a size"
                                 % (xml_file, n)
