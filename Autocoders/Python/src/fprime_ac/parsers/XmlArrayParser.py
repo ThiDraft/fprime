@@ -118,7 +118,7 @@ class XmlArrayParser(object):
 
         array = element_tree.getroot()
         if array.tag != "array":
-            PRINT.info("%s is not an array definition file" % xml_file)
+            PRINT.info("%s is not an array definition file", xml_file)
             sys.exit(-1)
 
         print("Parsing Array %s" % array.attrib["name"])

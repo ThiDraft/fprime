@@ -203,7 +203,7 @@ class SerialCppVisitor(AbstractVisitor.AbstractVisitor):
         """
         Wrapper to write tmpl to files desc.
         """
-        DEBUG.debug("SerialCppVisitor:%s" % visit_str)
+        DEBUG.debug("SerialCppVisitor:%s", visit_str)
         DEBUG.debug("===================================")
         DEBUG.debug(c)
         self.__fp.writelines(c.__str__())
@@ -223,9 +223,7 @@ class SerialCppVisitor(AbstractVisitor.AbstractVisitor):
                 + self.__config.get("serialize", "SerializableCpp")
             )
             PRINT.info(
-                "Generating code filename: %s, using XML namespace and name attributes..."
-                % filename
-            )
+                "Generating code filename: %s, using XML namespace and name attributes...", filename)
         else:
             xml_file = obj.get_xml_filename()
             x = xml_file.split(".")
@@ -237,9 +235,7 @@ class SerialCppVisitor(AbstractVisitor.AbstractVisitor):
                     "serialize", "SerializableCpp"
                 )
                 PRINT.info(
-                    "Generating code filename: %s, using default XML filename prefix..."
-                    % filename
-                )
+                    "Generating code filename: %s, using default XML filename prefix...", filename)
             else:
                 msg = (
                     "XML file naming format not allowed (must be XXXSerializableAi.xml), Filename: %s"
@@ -249,7 +245,7 @@ class SerialCppVisitor(AbstractVisitor.AbstractVisitor):
                 sys.exit(-1)
 
         # Open file for writing here...
-        DEBUG.info("Open file: %s" % filename)
+        DEBUG.info("Open file: %s", filename)
         self.__fp = open(filename, "w")
         if self.__fp is None:
             raise Exception("Could not open %s file.") % filename

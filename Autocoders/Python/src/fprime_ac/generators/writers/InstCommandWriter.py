@@ -79,7 +79,7 @@ class InstCommandWriter(AbstractDictWriter.AbstractDictWriter):
         """
         Wrapper to write tmpl to files desc.
         """
-        DEBUG.debug("InstCommandWriter:%s" % write_str)
+        DEBUG.debug("InstCommandWriter:%s", write_str)
         DEBUG.debug("===================================")
         DEBUG.debug(c)
         fp.writelines(c.__str__())

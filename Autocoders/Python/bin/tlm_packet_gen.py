@@ -130,7 +130,7 @@ class TlmPacketParser(object):
         self.size_dict = dict()
 
     def add_type_size(self, type, size):
-        PRINT.debug("Type: %s size: %d" % (type, size))
+        PRINT.debug("Type: %s size: %d", type, size)
         self.size_dict[type] = size
 
     def get_type_size(self, type_name, size):
@@ -227,7 +227,7 @@ class TlmPacketParser(object):
             comp_id = int(comp.get_base_id())
             comp_type = comp.get_type()
             if self.verbose:
-                PRINT.debug("Processing %s" % comp_name)
+                PRINT.debug("Processing %s", comp_name)
 
             # check for included XML types
             self.process_enum_files(parsed_xml_dict[comp_type].get_enum_type_files())

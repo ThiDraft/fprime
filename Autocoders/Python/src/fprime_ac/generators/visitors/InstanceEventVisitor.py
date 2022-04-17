@@ -77,7 +77,7 @@ class InstanceEventVisitor(AbstractVisitor.AbstractVisitor):
         """
         Wrapper to write tmpl to files desc.
         """
-        DEBUG.debug("InstanceEventVisitor:%s" % visit_str)
+        DEBUG.debug("InstanceEventVisitor:%s", visit_str)
         DEBUG.debug("===================================")
         DEBUG.debug(c)
         fp.writelines(c.__str__())
@@ -222,9 +222,7 @@ class InstanceEventVisitor(AbstractVisitor.AbstractVisitor):
                     # check for an error
                     if format_string is None:
                         PRINT.info(
-                            "Event %s in component %s had error processing format specifier"
-                            % (c.name, c.component)
-                        )
+                            "Event %s in component %s had error processing format specifier", c.name, c.component)
                         sys.exit(-1)
                     else:
                         c.format_string = format_string

@@ -302,9 +302,7 @@ class CompFactory:
                 and (port_obj.get_role() is None)
             ):
                 PRINT.info(
-                    "ERROR: Missing port type definition in component XML (name: %s, type: %s)"
-                    % (port_obj.get_name(), t)
-                )
+                    "ERROR: Missing port type definition in component XML (name: %s, type: %s)", port_obj.get_name(), t)
                 sys.exit(-1)
         #
         # Check here to make sure all the port types in the component XML
@@ -354,24 +352,14 @@ class CompFactory:
                     # 1) No return values for async ports
                     if (port_obj.get_sync() == "async") and (return_type is not None):
                         PRINT.info(
-                            'ERROR: %s: Port "%s" cannot be asynchronous and have a return value'
-                            % (
-                                the_parsed_component_xml.get_xml_filename(),
-                                port_obj.get_name(),
-                            )
-                        )
+                            'ERROR: %s: Port "%s" cannot be asynchronous and have a return value', the_parsed_component_xml.get_xml_filename(), port_obj.get_name())
                         sys.exit(-1)
                     # 2) Serial ports can't have roles
                     if (port_obj.get_type() == "Serial") and (
                         port_obj.get_role() is not None
                     ):
                         PRINT.info(
-                            'ERROR: %s: Port "%s" cannot have a role and be a serialized port'
-                            % (
-                                the_parsed_component_xml.get_xml_filename(),
-                                port_obj.get_name(),
-                            )
-                        )
+                            'ERROR: %s: Port "%s" cannot have a role and be a serialized port', the_parsed_component_xml.get_xml_filename(), port_obj.get_name())
                         sys.exit(-1)
 
         # check some component/port rules
@@ -379,17 +367,13 @@ class CompFactory:
         if comp_kind in ("active", "queued"):
             if num_async_ports == 0 and len(parameter_obj_list) == 0:
                 PRINT.info(
-                    'ERROR: %s: Active/Queued component "%s" needs at least one async port, command, or interface'
-                    % (the_parsed_component_xml.get_xml_filename(), comp_name)
-                )
+                    'ERROR: %s: Active/Queued component "%s" needs at least one async port, command, or interface', the_parsed_component_xml.get_xml_filename(), comp_name)
                 sys.exit(-1)
         # 2) Queued component needs at least one sync port/command
         if comp_kind == "queued":
             if num_sync_ports == 0:
                 PRINT.info(
-                    'ERROR: %s: Queued component "%s" needs at least one sync/guarded port or command'
-                    % (the_parsed_component_xml.get_xml_filename(), comp_name)
-                )
+                    'ERROR: %s: Queued component "%s" needs at least one sync/guarded port or command', the_parsed_component_xml.get_xml_filename(), comp_name)
                 sys.exit(-1)
 
         parsed_array_list = []
