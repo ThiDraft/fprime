@@ -75,7 +75,8 @@ class InstCommandWriter(AbstractDictWriter.AbstractDictWriter):
         self.bodytext = ""
         self.prototypetext = ""
 
-    def _writeTmpl(self, c, fp, write_str):
+    @staticmethod
+    def _writeTmpl(c, fp, write_str):
         """
         Wrapper to write tmpl to files desc.
         """

@@ -5,7 +5,8 @@ class DictTypeConverter:
     def __init__(self):
         pass
 
-    def convert(self, t, size):
+    @staticmethod
+    def convert(t, size):
 
         # check for various type variations
         type_string = ""
@@ -60,7 +61,8 @@ class DictTypeConverter:
                 ser_import = ".".join(ser_type)
         return (type_string, ser_import, type_name, use_size)
 
-    def format_replace(self, format_string, spec_num, old, new):
+    @staticmethod
+    def format_replace(format_string, spec_num, old, new):
         """
         Search the format specifier string and replace tokens
         Mainly a special case to handle enumerations. Software

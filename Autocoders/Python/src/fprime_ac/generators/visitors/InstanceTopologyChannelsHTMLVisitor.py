@@ -149,7 +149,8 @@ class InstanceTopologyChannelsHTMLVisitor(AbstractVisitor.AbstractVisitor):
         @param args: the instance of the concrete element to operation on.
         """
 
-    def initTelemetryParams(self, obj, c):
+    @staticmethod
+    def initTelemetryParams(obj, c):
         """
         Telemetry function parameters for code generation
         """

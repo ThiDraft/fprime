@@ -45,7 +45,8 @@ class ModelParser:
     # define static method
     getInstance = staticmethod(getInstance)
 
-    def uniqueList(self, seq):
+    @staticmethod
+    def uniqueList(seq):
         """
         Make a list of duplicates all unique.
         """
@@ -53,7 +54,8 @@ class ModelParser:
         seen_add = seen.add
         return [x for x in seq if x not in seen and not seen_add(x)]
 
-    def getPortsList(self, obj):
+    @staticmethod
+    def getPortsList(obj):
         """
         Return list of ports as (instance_name, type, direction, role) tuples.
         """
@@ -67,7 +69,8 @@ class ModelParser:
             port_instance_name_list.append((i, t, d, r))
         return port_instance_name_list
 
-    def getPortsListMaxNum(self, obj):
+    @staticmethod
+    def getPortsListMaxNum(obj):
         """
         Return list of ports as (instance_name, type, direction, max_number, role) tuples.
         """
@@ -82,7 +85,8 @@ class ModelParser:
             port_instance_name_list.append((i, t, d, m, r))
         return port_instance_name_list
 
-    def getPortsListSync(self, obj):
+    @staticmethod
+    def getPortsListSync(obj):
         """
         Return list of ports as (instance_name, type, direction, sync, priority, role) tuples.
         """
@@ -98,7 +102,8 @@ class ModelParser:
             port_instance_name_list.append((i, t, d, s, p, r))
         return port_instance_name_list
 
-    def getPortsListAll(self, obj):
+    @staticmethod
+    def getPortsListAll(obj):
         """
         Return list of ports as (instance_name, type, direction, sync, priority, full, role, max_number) tuples.
         """
@@ -116,7 +121,8 @@ class ModelParser:
             result.append((i, t, d, s, p, f, r, m))
         return result
 
-    def getCommandsListSync(self, obj):
+    @staticmethod
+    def getCommandsListSync(obj):
         """
         Return list of commands with mnemonic and sync
         """
@@ -129,7 +135,8 @@ class ModelParser:
             command_instance_name_list.append((m, s, p, f))
         return command_instance_name_list
 
-    def _getPortArgsNamespacePrefix(self, comp_namespace, port_namespace, arg_type):
+    @staticmethod
+    def _getPortArgsNamespacePrefix(comp_namespace, port_namespace, arg_type):
         """
         Return the arg_type prefixed by <namespace>::arg_type using namespace rules.
         """
@@ -150,7 +157,8 @@ class ModelParser:
         else:
             return port_namespace + "::" + arg_type
 
-    def getPortReturnDict(self, obj):
+    @staticmethod
+    def getPortReturnDict(obj):
         """
         Return a dict of return type strings, keyed by port name.
         If no return type it is 'void '.   Append modifiers to return types.
@@ -307,21 +315,24 @@ class ModelParser:
         #
         return port_namespace_dict
 
-    def hasSerializablePort(self, obj):
+    @staticmethod
+    def hasSerializablePort(obj):
         """
         Tests the list of ports in the model and if any one is a Serializable returns true
         else returns false.
         """
         return "Serial" in [p.get_type() for p in obj.get_ports()]
 
-    def hasSyncPort(self, obj):
+    @staticmethod
+    def hasSyncPort(obj):
         """
         Tests the list of ports in the model and if any one is a sync returns true
         else returns false.
         """
         return "sync" in [p.get_sync() for p in obj.get_ports()]
 
-    def getCommandsList(self, obj):
+    @staticmethod
+    def getCommandsList(obj):
         """
         Return list of command names based on mnemonic, opcode, and sync
         """
@@ -337,7 +348,8 @@ class ModelParser:
             command_instance_name_list.append((m, o, s, p, f, c))
         return command_instance_name_list
 
-    def getEventsList(self, obj):
+    @staticmethod
+    def getEventsList(obj):
         """
         Return list of event names based on id, name, severity, format_string, and comments
         """
@@ -353,7 +365,8 @@ class ModelParser:
             event_instance_name_list.append((i, n, s, f, t, c))
         return event_instance_name_list
 
-    def getTelemEnumList(self, obj):
+    @staticmethod
+    def getTelemEnumList(obj):
         enum_list = []
         for channel in obj.get_channels():
             t = channel.get_type()
@@ -380,7 +393,8 @@ class ModelParser:
                     sys.exit(-1)
         return enum_list
 
-    def getChannelsList(self, obj):
+    @staticmethod
+    def getChannelsList(obj):
         """
         Return list of telemetry channels
         """
@@ -403,7 +417,8 @@ class ModelParser:
             channel_instance_name_list.append((i, n, t, s, u, c, ti))
         return channel_instance_name_list
 
-    def getParamEnumList(self, obj):
+    @staticmethod
+    def getParamEnumList(obj):
         enum_list = []
         for parameter in obj.get_parameters():
             t = parameter.get_type()
@@ -430,7 +445,8 @@ class ModelParser:
                     sys.exit(-1)
         return enum_list
 
-    def getParametersList(self, obj):
+    @staticmethod
+    def getParametersList(obj):
         """
         Return list of parameters
         """
@@ -455,7 +471,8 @@ class ModelParser:
             )
         return parameter_instance_name_list
 
-    def getEnumList(self, obj):
+    @staticmethod
+    def getEnumList(obj):
         enum_list = []
         for command in obj.get_commands():
             args = command.get_args()
@@ -484,7 +501,8 @@ class ModelParser:
                         sys.exit(-1)
         return enum_list
 
-    def getCommandArgsDict(self, obj, from_proto=False):
+    @staticmethod
+    def getCommandArgsDict(obj, from_proto=False):
         """
         Return a dict of list of args, keyed by command mnemonic
         (e.g. arg_dict['mnemonic'] => [(name,type,comment), (name,type,comment), ...]
@@ -541,7 +559,8 @@ class ModelParser:
                 d2[l] = "void"
         return d2
 
-    def getEventEnumList(self, obj):
+    @staticmethod
+    def getEventEnumList(obj):
         enum_list = []
         for event in obj.get_events():
             args = event.get_args()
@@ -570,7 +589,8 @@ class ModelParser:
                         sys.exit(-1)
         return enum_list
 
-    def getEventArgsDict(self, obj):
+    @staticmethod
+    def getEventArgsDict(obj):
         """
         Return a dict of list of args, keyed by name mnemonic
         (e.g. arg_dict['name'] => [(name,type,comment), (name,type,comment), ...]
@@ -628,7 +648,8 @@ class ModelParser:
                 d2[l] = ""
         return d2
 
-    def getInternalInterfacesList(self, obj):
+    @staticmethod
+    def getInternalInterfacesList(obj):
         """
         Return list of interface names
         """
@@ -654,7 +675,8 @@ class ModelParser:
                 d2[l] = "void"
         return d2
 
-    def getInternalInterfaceArgsDict(self, obj, from_proto=False):
+    @staticmethod
+    def getInternalInterfaceArgsDict(obj, from_proto=False):
         """
         Return a dict of list of args, keyed by internal interface name
         (e.g. arg_dict['name'] => [(name,type,comment), (name,type,comment), ...]
@@ -697,7 +719,8 @@ class ModelParser:
                 args_dict[name].append((n, t, c, typeinfo))
         return args_dict
 
-    def getInternalInterfaceEnumList(self, obj):
+    @staticmethod
+    def getInternalInterfaceEnumList(obj):
         enum_list = []
         for internal_interface in obj.get_internal_interfaces():
             args = internal_interface.get_args()

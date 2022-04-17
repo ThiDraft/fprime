@@ -366,7 +366,8 @@ class XmlTopologyParser:
         """
         return self.__base_id_window
 
-    def __max_id_window(self, inst):
+    @staticmethod
+    def __max_id_window(inst):
         """
         For an instance of a component compute the maximum space required for ID's
         """

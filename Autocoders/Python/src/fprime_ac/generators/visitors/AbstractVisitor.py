@@ -62,7 +62,8 @@ class AbstractVisitor:
         """
         return self.__generate_empty_file
 
-    def initFilesVisit(self, obj):
+    @staticmethod
+    def initFilesVisit(obj):
         """
         Defined to generate files for generated code products.
         @param args: the instance of the concrete element to operation on.
@@ -71,7 +72,8 @@ class AbstractVisitor:
             "# AbstractVisitor.initFilesVisit() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def startSourceFilesVisit(self, obj):
+    @staticmethod
+    def startSourceFilesVisit(obj):
         """
         Defined to generate starting static code within files.
         """
@@ -79,7 +81,8 @@ class AbstractVisitor:
             "# AbstractVisitor.startSourceFilesVisit() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def includes1Visit(self, obj):
+    @staticmethod
+    def includes1Visit(obj):
         """
         Defined to generate includes within a file.
         Usually used for the base classes but also for Port types
@@ -89,7 +92,8 @@ class AbstractVisitor:
             "# AbstractVisitor.includesVisit1() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def includes2Visit(self, obj):
+    @staticmethod
+    def includes2Visit(obj):
         """
         Defined to generate internal includes within a file.
         Usually used for data type includes and system includes.
@@ -99,7 +103,8 @@ class AbstractVisitor:
             "# AbstractVisitor.includesVisit2() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def namespaceVisit(self, obj):
+    @staticmethod
+    def namespaceVisit(obj):
         """
         Defined to generate namespace code within a file.
         Also any pre-condition code is generated.
@@ -109,7 +114,8 @@ class AbstractVisitor:
             "# AbstractVisitor.namespaceVisit() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def publicVisit(self, obj):
+    @staticmethod
+    def publicVisit(obj):
         """
         Defined to generate public stuff within a class.
         @param args: the instance of the concrete element to operation on.
@@ -118,7 +124,8 @@ class AbstractVisitor:
             "# AbstractVisitor.publicVisit() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def protectedVisit(self, obj):
+    @staticmethod
+    def protectedVisit(obj):
         """
         Defined to generate protected stuff within a class.
         @param args: the instance of the concrete element to operation on.
@@ -127,7 +134,8 @@ class AbstractVisitor:
             "# AbstractVisitor.protectedVisit() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def privateVisit(self, obj):
+    @staticmethod
+    def privateVisit(obj):
         """
         Defined to generate private stuff within a class.
         @param args: the instance of the concrete element to operation on.
@@ -136,7 +144,8 @@ class AbstractVisitor:
             "# AbstractVisitor.privateVisit() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def finishSourceFilesVisit(self, obj):
+    @staticmethod
+    def finishSourceFilesVisit(obj):
         """
         Defined to generate ending static code within files.
         """
@@ -144,7 +153,8 @@ class AbstractVisitor:
             "# AbstractVisitor.endSourceFilesVisit() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def DictStartVisit(self, obj):
+    @staticmethod
+    def DictStartVisit(obj):
         """
         Defined to generate start of command Python class.
         """
@@ -152,7 +162,8 @@ class AbstractVisitor:
             "# DictStartVisit.startCommandVisit() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def DictHeaderVisit(self, obj):
+    @staticmethod
+    def DictHeaderVisit(obj):
         """
         Defined to generate header for Python command class.
         """
@@ -160,7 +171,8 @@ class AbstractVisitor:
             "# DictStartVisit.commandHeaderVisit() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def DictBodyVisit(self, obj):
+    @staticmethod
+    def DictBodyVisit(obj):
         """
         Defined to generate body for Python command class.
         """
@@ -168,19 +180,24 @@ class AbstractVisitor:
             "# DictStartVisit.commandBodyVisit() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def isSync(self, str):
+    @staticmethod
+    def isSync(str):
         return str is not None and str.lower() == "sync"
 
-    def isAsync(self, str):
+    @staticmethod
+    def isAsync(str):
         return str is not None and str.lower() == "async"
 
-    def isSerial(self, str):
+    @staticmethod
+    def isSerial(str):
         return str is not None and str.lower() == "serial"
 
-    def isInput(self, str):
+    @staticmethod
+    def isInput(str):
         return str is not None and str.lower() == "input"
 
-    def relativePath(self):
+    @staticmethod
+    def relativePath():
         """
         If BUILD_ROOT is set, get the relative path to current execution location
         """

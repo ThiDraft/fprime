@@ -55,7 +55,8 @@ class AbstractWriter:
         """
         return self.__generate_empty_file
 
-    def write(self, obj):
+    @staticmethod
+    def write(obj):
         """
         Defined to call all other write methods at once
         @params args: the instance of the concrete element to operate on.
@@ -64,7 +65,8 @@ class AbstractWriter:
             "# AbstractWriter.write() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def initFilesWrite(self, obj):
+    @staticmethod
+    def initFilesWrite(obj):
         """
         Defined to generate files for generated code products.
         @param args: the instance of the concrete element to operation on.
@@ -73,7 +75,8 @@ class AbstractWriter:
             "# AbstractWriter.initFilesWrite() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def startSourceFilesWrite(self, obj):
+    @staticmethod
+    def startSourceFilesWrite(obj):
         """
         Defined to generate starting static code within files.
         """
@@ -81,7 +84,8 @@ class AbstractWriter:
             "# AbstractWriter.startSourceFilesWrite() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def includes1Write(self, obj):
+    @staticmethod
+    def includes1Write(obj):
         """
         Defined to generate includes within a file.
         Usually used for the base classes but also for Port types
@@ -91,7 +95,8 @@ class AbstractWriter:
             "# AbstractWriter.includesWrite1() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def includes2Write(self, obj):
+    @staticmethod
+    def includes2Write(obj):
         """
         Defined to generate internal includes within a file.
         Usually used for data type includes and system includes.
@@ -101,7 +106,8 @@ class AbstractWriter:
             "# AbstractWriter.includesWrite2() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def namespaceWrite(self, obj):
+    @staticmethod
+    def namespaceWrite(obj):
         """
         Defined to generate namespace code within a file.
         Also any pre-condition code is generated.
@@ -111,7 +117,8 @@ class AbstractWriter:
             "# AbstractWriter.namespaceWrite() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def publicWrite(self, obj):
+    @staticmethod
+    def publicWrite(obj):
         """
         Defined to generate public stuff within a class.
         @param args: the instance of the concrete element to operation on.
@@ -120,7 +127,8 @@ class AbstractWriter:
             "# AbstractWriter.publicWrite() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def protectedWrite(self, obj):
+    @staticmethod
+    def protectedWrite(obj):
         """
         Defined to generate protected stuff within a class.
         @param args: the instance of the concrete element to operation on.
@@ -129,7 +137,8 @@ class AbstractWriter:
             "# AbstractWriter.protectedWrite() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def privateWrite(self, obj):
+    @staticmethod
+    def privateWrite(obj):
         """
         Defined to generate private stuff within a class.
         @param args: the instance of the concrete element to operation on.
@@ -138,7 +147,8 @@ class AbstractWriter:
             "# AbstractWriter.privateWrite() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def finishSourceFilesWrite(self, obj):
+    @staticmethod
+    def finishSourceFilesWrite(obj):
         """
         Defined to generate ending static code within files.
         """
@@ -146,7 +156,8 @@ class AbstractWriter:
             "# AbstractWriter.endSourceFilesWrite() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def DictStartWrite(self, obj):
+    @staticmethod
+    def DictStartWrite(obj):
         """
         Defined to generate start of command Python class.
         """
@@ -154,7 +165,8 @@ class AbstractWriter:
             "# DictStartWrite.startCommandWrite() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def DictHeaderWrite(self, obj):
+    @staticmethod
+    def DictHeaderWrite(obj):
         """
         Defined to generate header for Python command class.
         """
@@ -162,7 +174,8 @@ class AbstractWriter:
             "# DictStartWrite.commandHeaderWrite() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def DictBodyWrite(self, obj):
+    @staticmethod
+    def DictBodyWrite(obj):
         """
         Defined to generate body for Python command class.
         """
@@ -170,14 +183,18 @@ class AbstractWriter:
             "# DictStartWrite.commandBodyWrite() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def isSync(self, str):
+    @staticmethod
+    def isSync(str):
         return str is not None and str.lower() == "sync"
 
-    def isAsync(self, str):
+    @staticmethod
+    def isAsync(str):
         return str is not None and str.lower() == "async"
 
-    def isSerial(self, str):
+    @staticmethod
+    def isSerial(str):
         return str is not None and str.lower() == "serial"
 
-    def isInput(self, str):
+    @staticmethod
+    def isInput(str):
         return str is not None and str.lower() == "input"

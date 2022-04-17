@@ -102,16 +102,19 @@ class Packet:
     # errors encountered parsing the file use err_msg to output the
     # error and exit.
 
-    def err_msg(self, msg):
+    @staticmethod
+    def err_msg(msg):
         global tlm_input_line_num
         print(msg, "at input line ", tlm_input_line_num)
         exit(1)
 
-    def duration(self, line):
+    @staticmethod
+    def duration(line):
         global tlm_duration
         tlm_duration = float(line[1])
 
-    def run_period(self, line):
+    @staticmethod
+    def run_period(line):
         global tlm_period
         tlm_period = float(line[1])
 

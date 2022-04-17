@@ -82,7 +82,8 @@ class PortHVisitor(AbstractVisitor.AbstractVisitor):
         self.bodytext = ""
         self.prototypetext = ""
 
-    def _get_args_string(self, obj):
+    @staticmethod
+    def _get_args_string(obj):
         """
         Return a string of (type, name) args, comma separated
         for use in templates that generate prototypes.
@@ -129,7 +130,8 @@ class PortHVisitor(AbstractVisitor.AbstractVisitor):
         arg_str = arg_str.strip(", ")
         return arg_str
 
-    def _get_args_sum_string(self, obj):
+    @staticmethod
+    def _get_args_sum_string(obj):
         """
         Return a string of sizeof calls that sum to the port
         buffer size for use within the input ports.
@@ -195,7 +197,8 @@ class PortHVisitor(AbstractVisitor.AbstractVisitor):
         arg_str = arg_str.strip(" + ")
         return arg_str
 
-    def _get_args_list(self, obj):
+    @staticmethod
+    def _get_args_list(obj):
         """
         Return a list of port argument tuples
         """
@@ -305,7 +308,8 @@ class PortHVisitor(AbstractVisitor.AbstractVisitor):
         ]
         self._writeTmpl(c, "includes2Visit")
 
-    def _get_enum_string_list(self, enum_list):
+    @staticmethod
+    def _get_enum_string_list(enum_list):
         """"""
         enum_tuple = enum_list[0]
         enum_list = enum_list[1]

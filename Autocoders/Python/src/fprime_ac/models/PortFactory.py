@@ -58,7 +58,8 @@ class PortFactory:
     # define static method
     getInstance = staticmethod(getInstance)
 
-    def create(self, the_parsed_port_xml):
+    @staticmethod
+    def create(the_parsed_port_xml):
         """
         Create a port (interface) type model here.
         """

@@ -67,8 +67,9 @@ class CompFactory:
     # define static method
     getInstance = staticmethod(getInstance)
 
+    @staticmethod
     def create(
-        self, the_parsed_component_xml, parsed_port_xml_list, parsed_serializable_list
+        the_parsed_component_xml, parsed_port_xml_list, parsed_serializable_list
     ):
         """
         Create a component model here.

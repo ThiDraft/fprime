@@ -68,7 +68,8 @@ class Parser:
         else:
             self.__xml_string = self._make_string(xml_file)
 
-    def _make_string(self, filename):
+    @staticmethod
+    def _make_string(filename):
         """
         Convert and return the filename as a single string.
         """
@@ -98,7 +99,8 @@ class Parser:
         """
         self.__node_start_visit_dict[element_name] = visitor
 
-    def exampleStartVisitor(self, element):
+    @staticmethod
+    def exampleStartVisitor(element):
         """
         This is an example of a method you might register via addStartVisitor.
         It might be useful to see your XML as its parsed in during debugging.
@@ -288,7 +290,8 @@ class Parser:
             element.cdata += data
             return
 
-    def validateElement(self, element, validAttrs):
+    @staticmethod
+    def validateElement(element, validAttrs):
         """
         Validate the attributes of a single element. Note that attributes
         cannot be repeated, or its not valid XML, so we won't even get here
@@ -336,7 +339,8 @@ class Parser:
 
         return (problems, value, invalidAttrs, errorMsg)
 
-    def countSubtree(self, element, expectedChildren):
+    @staticmethod
+    def countSubtree(element, expectedChildren):
         """
         Count the children of an element that have names (XML tags) from
         a specified list. The shape of the tree is not specified, so this only

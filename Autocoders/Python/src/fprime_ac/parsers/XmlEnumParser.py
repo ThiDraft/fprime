@@ -170,7 +170,8 @@ class XmlEnumParser:
             msg = "If one enum item has a value attribute, all items should have a value attribute"
             raise FprimeXmlException(msg)
 
-    def is_attribute_consistent(self, element_tree, val_name):
+    @staticmethod
+    def is_attribute_consistent(element_tree, val_name):
         """
         Returns true if either all or none of the enum items
         contain a given value

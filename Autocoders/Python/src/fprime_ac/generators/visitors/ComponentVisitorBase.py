@@ -64,7 +64,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         self.__fp.writelines(c.__str__())
         DEBUG.debug("===================================")
 
-    def argsString(self, args):
+    @staticmethod
+    def argsString(args):
         """
         Make a list of args into a string
         """
@@ -120,7 +121,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
     def config(self, a, b):
         return self.__config.get(a, b)
 
-    def doxygenPostComment(self, comment):
+    @staticmethod
+    def doxygenPostComment(comment):
         """
         Emit a doxygen post comment
         """
@@ -129,7 +131,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         else:
             return "/*!< " + comment + "*/"
 
-    def doxygenPreComment(self, comment):
+    @staticmethod
+    def doxygenPreComment(comment):
         """
         Emit a doxygen pre comment
         """
@@ -138,7 +141,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         else:
             return "/*! " + comment + "*/"
 
-    def emitComment(self, comment):
+    @staticmethod
+    def emitComment(comment):
         """
         Emit a comment
         """
@@ -147,7 +151,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         else:
             return "/* " + comment + "*/"
 
-    def emitIndent(self, indent):
+    @staticmethod
+    def emitIndent(indent):
         str = ""
         for i in range(0, indent):
             str += " "
@@ -262,7 +267,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         self.bodytext = ""
         self.prototypetext = ""
 
-    def initCommandParams(self, obj, c):
+    @staticmethod
+    def initCommandParams(obj, c):
         """
         Command function parameters for code generation
         """
@@ -302,7 +308,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
             c.comp_include_path = self.__config.get("includes", "comp_include_path")
         c.include_path = c.comp_include_path
 
-    def initEventParams(self, obj, c):
+    @staticmethod
+    def initEventParams(obj, c):
         """
         Event function parameters for code generation
         Some of these are also used for telemetry
@@ -403,7 +410,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
 
         c.msg_types = port_types + cmd_types + interface_types
 
-    def initParameterParams(self, obj, c):
+    @staticmethod
+    def initParameterParams(obj, c):
         """
         Parameter function parameters for code generation
         """
@@ -497,7 +505,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         # Init message calls
         self.initMessageCalls(c)
 
-    def initInputPorts(self, c):
+    @staticmethod
+    def initInputPorts(c):
         """
         Init input ports
         """
@@ -549,7 +558,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
             if role is None
         ]
 
-    def initOutputPorts(self, c):
+    @staticmethod
+    def initOutputPorts(c):
         """
         Init output ports
         """
@@ -593,7 +603,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
             if type == "Serial"
         ]
 
-    def initHandlers(self, c):
+    @staticmethod
+    def initHandlers(c):
         """
         Handlers to implement for input ports
         """
@@ -614,7 +625,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         # Serial handlers
         c.handlers_serial = c.serial_input_ports
 
-    def initPreMessageHooks(self, c):
+    @staticmethod
+    def initPreMessageHooks(c):
         """
         Init Pre-message hooks
         """
@@ -641,7 +653,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         # Pre-message hooks for serial async input ports
         c.pre_message_hooks_serial = c.serial_input_ports
 
-    def initInvocationFunctions(self, c):
+    @staticmethod
+    def initInvocationFunctions(c):
         # Invocation functions for output ports
         c.invocation_functions = [
             (instance, type, sync, priority, role, max_num)
@@ -657,7 +670,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         # Invocation functions for serial output ports
         c.serial_invocation_functions = c.serial_output_ports
 
-    def initMessageCalls(self, c):
+    @staticmethod
+    def initMessageCalls(c):
         """
         Calls for messages
         """
@@ -692,7 +706,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         # Construct map: port name -> return type string
         c.port_return_type_strs = self.__model_parser.getPortReturnDict(obj)
 
-    def initPortNames(self, obj, c):
+    @staticmethod
+    def initPortNames(obj, c):
         """
         Set special port names
         """
@@ -794,7 +809,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         c.channels = self.__model_parser.getChannelsList(obj)
         self.initTelemetryParams(obj, c)
 
-    def initTelemetryParams(self, obj, c):
+    @staticmethod
+    def initTelemetryParams(obj, c):
         """
         Telemetry function parameters for code generation
         """
@@ -830,7 +846,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
 
         return f
 
-    def isPrimitiveType(self, type):
+    @staticmethod
+    def isPrimitiveType(type):
         return type in [
             "I8",
             "U8",
@@ -845,7 +862,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
             "bool",
         ]
 
-    def mapPartial(self, f, l):
+    @staticmethod
+    def mapPartial(f, l):
         """
         Map partial function f over list l
         """
@@ -877,7 +895,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         filename = self.buildFileName(obj)
         self.openFile(filename)
 
-    def paramStrsCpp(self, param):
+    @staticmethod
+    def paramStrsCpp(param):
         """
         Get the strings for a function parameter in a .cpp file
         """
@@ -894,7 +913,8 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         comment_str = " " + self.doxygenPostComment(comment)
         return param_str, comment_str
 
-    def portParamStrsCpp(self, param):
+    @staticmethod
+    def portParamStrsCpp(param):
         """
         Get the strings for a port function parameter in a .cpp file
         """
