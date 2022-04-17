@@ -432,6 +432,7 @@ class Formatters:
         """
         self.__config = ConfigManager.ConfigManager.getInstance()
 
+    @staticmethod
     def getInstance():
         """
         Return instance of singleton.
@@ -439,9 +440,6 @@ class Formatters:
         if Formatters.__instance is None:
             Formatters.__instance = Formatters()
         return Formatters.__instance
-
-    # define static method
-    getInstance = staticmethod(getInstance)
 
     def _dlog(self, ddt, arg):
         """

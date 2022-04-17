@@ -55,6 +55,7 @@ class CompFactory:
         self.__instance = None
         self.__configured_visitors = dict()
 
+    @staticmethod
     def getInstance():
         """
         Return instance of singleton.
@@ -63,9 +64,6 @@ class CompFactory:
             CompFactory.__instance = CompFactory()
 
         return CompFactory.__instance
-
-    # define static method
-    getInstance = staticmethod(getInstance)
 
     def create(
         self, the_parsed_component_xml, parsed_port_xml_list, parsed_serializable_list

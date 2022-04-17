@@ -34,6 +34,7 @@ class ModelParser:
         Constructor.
         """
 
+    @staticmethod
     def getInstance():
         """
         Return instance of singleton.
@@ -41,9 +42,6 @@ class ModelParser:
         if ModelParser.__instance is None:
             ModelParser.__instance = ModelParser()
         return ModelParser.__instance
-
-    # define static method
-    getInstance = staticmethod(getInstance)
 
     def uniqueList(self, seq):
         """
