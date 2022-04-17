@@ -1307,7 +1307,7 @@ class Formatters:
         Return the module directory for single thread and multi-thread modules.
         """
         mod_id_list = module_id.split("_")
-        if len(mod_id_list) == 1 or len(mod_id_list) == 2:
+        if len(mod_id_list) in (1, 2):
             mod_id_dir = mod_id_list[0]
         else:
             str = (
