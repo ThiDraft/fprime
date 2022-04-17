@@ -44,16 +44,10 @@ class EnumCheckResults:
         self.stale_bools = self.stale_bools + 1
 
     def has_warnings(self):
-        if self.underruns > 0 or self.stale_bools > 0:
-            return True
-        else:
-            return False
+        return bool(self.underruns > 0 or self.stale_bools > 0)
 
     def has_errors(self):
-        if self.overruns > 0 or self.key_errors > 0:
-            return True
-        else:
-            return False
+        return bool(self.overruns > 0 or self.key_errors > 0)
 
     def report_warnings(self):
         print("Enum Check Warnings: (%d)" % (self.underruns + self.stale_bools))
