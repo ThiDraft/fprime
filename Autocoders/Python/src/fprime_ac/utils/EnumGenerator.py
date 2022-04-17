@@ -27,7 +27,6 @@ def open_file(name, type):
     """
     Open the file for writing
     """
-
     filename = name + "EnumAc." + type
     fp = open(filename, "w")
     if fp is None:

@@ -40,7 +40,6 @@ def validate_xml(xml_list):
 
     A list of valid XML files is returned (Not valid files are thrown out)
     """
-
     out_list = []
     for xml_path in xml_list:
         if os.path.isfile(xml_path):

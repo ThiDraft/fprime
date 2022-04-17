@@ -122,7 +122,6 @@ def ParseTypedefEnum(typename, filename, loadfile=True):
     @param: loadfile, True to open filename; False if already in memory
     @return: a dictionary of enumeration name/value pairs
     """
-
     if loadfile not in (True, False):
         raise ValueError("%r: invalid loadfile argument" % loadfile)
 
@@ -315,7 +314,6 @@ def ParseTypedefEnumValue(name, typename, filename, loadfile=True):
     @param: filename - the name of the C file
     @param: loadfile - True to load filename; False if already loaded.
     """
-
     enums = {}
 
     # Use the ParseTypedefEnum function to perform the first

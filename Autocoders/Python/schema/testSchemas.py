@@ -62,7 +62,6 @@ class schema_test:
         """
         Returns root tag assuming file path is correct
         """
-
         with open(file_path) as handler:
 
             # Parse schema file
@@ -90,9 +89,7 @@ class schema_test:
         list_of_root_tags - list of root tags to check for
         directory - directory to look in
         """
-
         # Check if directory exists and list_of_root_tags isn't empty
-
         if len(list_of_root_tags) == 0:
             raise Exception(
                 "{} : List of root tags empty in parse_and_add_directory!".format(
@@ -132,7 +129,6 @@ class schema_test:
         """
         Returns the amount of tests in the object.
         """
-
         return len(self.__test_set_list)
 
     def run_test(self, index):

@@ -569,7 +569,6 @@ class TopoFactory:
         Routing prints the base_id_list to a table format.
         If base_id_list is None, the routing prints the header
         """
-
         if base_id_tuple is None:
             print_item = " | ".join(
                 header[1] * " " + header[0] + header[1] * " "

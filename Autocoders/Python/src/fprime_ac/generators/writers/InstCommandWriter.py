@@ -90,7 +90,6 @@ class InstCommandWriter(AbstractDictWriter.AbstractDictWriter):
         Defined to generate files for generated code products.
         @param obj: the instance of the command model to write.
         """
-
         # Build filename here...
         # Make dictionary directly if it doesn't exist
         output_dir = os.environ["DICT_DIR"] + "/commands"
@@ -188,7 +187,6 @@ class InstCommandWriter(AbstractDictWriter.AbstractDictWriter):
         Defined to generate header for  command python class.
         @param obj: the instance of the command model to write.
         """
-
         if type(obj) is Command.Command:
             for fname in list(self.__fp1.keys()):
                 c = CommandHeader.CommandHeader()

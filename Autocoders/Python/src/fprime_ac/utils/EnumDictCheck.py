@@ -114,7 +114,6 @@ def cmd_dict_enum_size_check(filename, verbose=False):
     validate the size of enumerated arguments. The specified uplink size
     must match the size of the enumerated argument.
     """
-
     if not os.path.exists(filename):
         if verbose == True:
             print("The specified dictionary does not exist: %s" % (filename))

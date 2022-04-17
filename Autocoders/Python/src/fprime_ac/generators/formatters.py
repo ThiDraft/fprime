@@ -58,7 +58,6 @@ class CommentFormatters:
         For the @code lines the leading number of spaces before the @ of
         the first @code is stripped off each line.
         """
-
         new_line_list = list()
 
         code_flag = False
@@ -83,7 +82,6 @@ class CommentFormatters:
         """
         Prefix a string of lines with str, each line must end with '\n'.
         """
-
         new_lines = ""
 
         line_list = lines.split("\n")
@@ -102,7 +100,6 @@ class CommentFormatters:
         Returns the first non-return element in a list
         Returns -1 if everything is a newline
         """
-
         count = 0
 
         for item in line_list:
@@ -120,7 +117,6 @@ class CommentFormatters:
         elements being all white space.
         Return -1 if all white space.
         """
-
         index = len(line_list) - 1
 
         while index >= 0:
@@ -139,7 +135,6 @@ class CommentFormatters:
         at the specified level of indentation and line width.  A string is
         returned.
         """
-
         out = list()
 
         width = width - indent
@@ -167,7 +162,6 @@ class CommentFormatters:
 
         Steve: 03-01-08
         """
-
         comment = message + " " + text
 
         return self._wrapText(comment, 0, "* ", 70)
@@ -178,7 +172,6 @@ class CommentFormatters:
         comments will include information about each argument. The text
         is formatted in doxygen style.
         """
-
         line_list = user_comment.split("\n")
 
         comment_str = self.__config.get("ipc", "comment_title_token")
@@ -272,7 +265,6 @@ class CommentFormatters:
         on line length is imposed so it is assumed the XML is of reasonable length
         text lines. Recognizes @code directives for doxygen.
         """
-
         line_list = comment_stuff.split("\n")
 
         comment_str = self.__config.get("ipc", "comment_title_token")
@@ -494,7 +486,6 @@ class Formatters:
         @param name: The user specified function name
         @param str:  A short string with '_' separation.
         """
-
         name = name.lower()
         name_list = name.split("_")
 
@@ -587,7 +578,6 @@ class Formatters:
         @param name: Original function name with '_' separation.
         @param name_sep: A string placed between the id and interface name
         """
-
         # print id
         id_list = id.strip("_").split("_")
 
@@ -685,7 +675,6 @@ class Formatters:
         @param name: Original function name with '_' separation.
         @return: Valid command stem name stri
         """
-
         max_stem_length = int(self.__config.get("ipc", "max_stem_length"))
 
         name_list = name.upper().split("_")
@@ -782,7 +771,6 @@ class Formatters:
         scalar or array.
         @param arg: tuple of (id, type, comment, max_size, size)
         """
-
         if arg[3] == "":
             return "{} {}".format(arg[1], arg[0])
         else:
@@ -881,7 +869,6 @@ class Formatters:
         function declaration. The proto flag is used to properly terminate
         the function.
         """
-
         # Get the simple case out of the way.
         if len(args) == 0:
 
@@ -972,7 +959,6 @@ class Formatters:
         @param args: A list of function arguments in tuple form
         @param proto: Flag indicating if this is for a function prototype
         """
-
         pad = 0
 
         fname = name.strip()
@@ -1215,7 +1201,6 @@ class Formatters:
         @param arg_list:  list of arguments corresponding to type names.
         @return str_list: a list of strings with args aligned.
         """
-
         str_list = list()
 
         if len(type_list) > 0:
@@ -1260,7 +1245,6 @@ class Formatters:
         combination that appears within typedefs.
         @param args: list of tuple args from xml.
         """
-
         type_list = list()
         arg_list = list()
         comment_list = list()

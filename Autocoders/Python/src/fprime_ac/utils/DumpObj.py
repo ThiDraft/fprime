@@ -80,7 +80,6 @@ def dumpObj(
          __weakref__           None
          a                     30
     """
-
     import types
 
     # Formatting parameters.
@@ -251,7 +250,6 @@ def prettyPrintCols(strings, widths, split=" "):
     """Pretty prints text in columns, with each string breaking at
     split according to prettyPrint.  margins gives the corresponding
     right breaking point."""
-
     assert len(strings) == len(widths)
 
     strings = list(map(nukenewlines, strings))
@@ -277,7 +275,6 @@ def prettyPrint(string, maxlen=75, split=" "):
 
     This will overflow the line if no convenient occurrence of split
     is found"""
-
     # Tack on the splitting character to guarantee a final match
     string += split
 
@@ -298,7 +295,6 @@ def nukenewlines(string):
 
     Bug: This routine will completely butcher any whitespace-formatted
     text."""
-
     if not string:
         return ""
     lines = string.splitlines()
@@ -308,7 +304,6 @@ def nukenewlines(string):
 def delchars(str, chars):
     """Returns a string for which all occurrences of characters in
     chars have been removed."""
-
     # Translate demands a mapping string of 256 characters;
     # whip up a string that will leave all characters unmolested.
     identity = "".join([chr(x) for x in range(256)])

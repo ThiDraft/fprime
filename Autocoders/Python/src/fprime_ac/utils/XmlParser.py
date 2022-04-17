@@ -58,7 +58,6 @@ class Parser:
         Given a well formed XML file (xml_file), read it and turn it into
         a big string.
         """
-
         self.__node_stack = list()
         self.__node_end_visit_dict = dict()
         self.__node_start_visit_dict = dict()
@@ -72,7 +71,6 @@ class Parser:
         """
         Convert and return the filename as a single string.
         """
-
         if os.path.isfile(filename) == False:
             str = "ERROR: Could not find specified XML file %s." % filename
             PRINT.info(str)
@@ -139,7 +137,6 @@ class Parser:
         single visitor to the start of any element: might be useful for
         debugging.
         """
-
         self.__node_end_visit_dict[element_name] = visitor
 
     def parse(self):
@@ -152,7 +149,6 @@ class Parser:
         called. This is not the way to process multiple XML files into a
         single parse tree.
         """
-
         if self.__xml_string is None:
             return
         else:
@@ -189,7 +185,6 @@ class Parser:
         be used to parse multiple XML files into a single tree. Just call this
         method with each filename.
         """
-
         root_name_checked = False
 
         xml_text = self._make_string(filename)
@@ -252,7 +247,6 @@ class Parser:
         """
         Start element handler.
         """
-
         # Instantiate an Element object
         element = Element(name, attr)
 
@@ -308,7 +302,6 @@ class Parser:
         be used as the beginning of an error message for more detailed checks
         done by the caller (subclass' element validation method).
         """
-
         problems = 0
         value = dict()
         invalidAttrs = list()
@@ -478,7 +471,6 @@ class Element:
         If no tag name is given, return list of all children.
         else return only those children with a matching tag name.
         """
-
         if not name:
             return self.children
         else:

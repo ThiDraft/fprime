@@ -1488,7 +1488,6 @@ class Command:
         @param comment:  A single or multiline comment
         @param base_opcode: An int which represents the command
         """
-
         self.__mnemonic = mnemonic
         self.__opcodes = opcodes
         self.__sync = sync
@@ -1571,7 +1570,6 @@ class InternalInterface:
         @param priority:  Priority of interface message
         @param comment:  A single or multiline comment
         """
-
         self.__name = name
         self.__priority = priority
         self.__full = full
@@ -1629,7 +1627,6 @@ class Channel:
         @param limits: a tuple of (low_red, low_yellow, high_yellow, high_red) which specifies warning levels for telemetry. 'None' when not specified
         @param comment:  A single or multiline comment
         """
-
         self.__ids = ids
         self.__name = name
         self.__type = type
@@ -1710,7 +1707,6 @@ class Parameter:
         @param type:  Type of command (must have supporting include xml)
         @param comment:  A single or multiline comment
         """
-
         self.__ids = ids
         self.__name = name
         self.__type = type

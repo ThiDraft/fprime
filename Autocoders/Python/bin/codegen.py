@@ -110,7 +110,6 @@ def pinit():
     """
     Initialize the option parser and return it.
     """
-
     current_dir = os.getcwd()
 
     usage = "usage: %prog [options] [xml_filename]"

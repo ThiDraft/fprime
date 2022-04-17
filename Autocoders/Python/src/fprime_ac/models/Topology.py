@@ -108,7 +108,6 @@ class Topology:
         Sets the header dict (key = xml name, val = comp header location)
         If the val is none, a comp header location is computed, making assumptions
         """
-
         """self.__instance_header_dict = {}
         for xml_name in instance_header_dict:
             if instance_header_dict[xml_name] is not None:

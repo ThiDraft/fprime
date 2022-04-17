@@ -256,11 +256,9 @@ class GenFactory:
         kept here as a hardwired list of classes. The project parameter can
         be used to hardwire a different set of code generators.
         """
-
         # Get the list of code producing visitors. The hardwired list is
         # based on the project argument. A different set of visitors can
         # be assembled by project.
-
         project_visitor_list = self._buildVisitorList()
 
         # Instance the needed code snippet generator here.

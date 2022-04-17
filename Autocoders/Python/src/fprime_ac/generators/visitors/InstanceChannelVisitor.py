@@ -87,7 +87,6 @@ class InstanceChannelVisitor(AbstractVisitor.AbstractVisitor):
         Defined to generate files for generated code products.
         @param obj: the instance of the channel model to visit.
         """
-
         # Build filename here...
         # Make dictionary directly if it doesn't exist
         output_dir = os.environ["DICT_DIR"] + "/channels"
@@ -134,7 +133,6 @@ class InstanceChannelVisitor(AbstractVisitor.AbstractVisitor):
         """
         Defined to generate header for  channel python class.
         """
-
         for fname in list(self.__fp.keys()):
             c = ChannelHeader.ChannelHeader()
             d = datetime.datetime.now()

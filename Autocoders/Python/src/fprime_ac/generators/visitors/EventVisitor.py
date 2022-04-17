@@ -89,7 +89,6 @@ class EventVisitor(AbstractVisitor.AbstractVisitor):
         Defined to generate files for generated code products.
         @param obj: the instance of the event model to visit.
         """
-
         # Build filename here...
         # Make dictionary directly if it doesn't exist
         output_dir = os.environ["DICT_DIR"] + "/events"

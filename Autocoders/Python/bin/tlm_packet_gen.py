@@ -563,7 +563,6 @@ def pinit():
     """
     Initialize the option parser and return it.
     """
-
     usage = "usage: %prog [options] [xml_topology_filename]"
 
     parser = OptionParser(usage)

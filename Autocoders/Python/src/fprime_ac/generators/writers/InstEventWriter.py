@@ -88,7 +88,6 @@ class InstEventWriter(AbstractDictWriter.AbstractDictWriter):
         Defined to generate files for generated code products.
         @param obj: the instance of the event model to write.
         """
-
         # Build filename here...
         # Make dictionary directly if it doesn't exist
         output_dir = os.environ["DICT_DIR"] + "/events"
@@ -137,7 +136,6 @@ class InstEventWriter(AbstractDictWriter.AbstractDictWriter):
         Defined to generate header for  event python class.
         @param obj: the instance of the event model to operation on.
         """
-
         for fname in list(self.__fp.keys()):
             c = EventHeader.EventHeader()
             d = datetime.datetime.now()
