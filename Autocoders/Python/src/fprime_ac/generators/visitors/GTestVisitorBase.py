@@ -19,7 +19,8 @@ class GTestVisitorBase(ComponentVisitorBase.ComponentVisitorBase):
     A base class for GTest visitors
     """
 
-    def transformEnumType(self, c, type, typeinfo):
+    @staticmethod
+    def transformEnumType(c, type, typeinfo):
         return c.component_base + "::" + type if typeinfo == "enum" else type
 
     def getTlmType(self, c):
@@ -30,7 +31,8 @@ class GTestVisitorBase(ComponentVisitorBase.ComponentVisitorBase):
 
         return f
 
-    def transformEventParams(self, c, params):
+    @staticmethod
+    def transformEventParams(c, params):
         def transformEventParam(param):
             name, type, comment, size, typeinfo = param
             if typeinfo == "string":

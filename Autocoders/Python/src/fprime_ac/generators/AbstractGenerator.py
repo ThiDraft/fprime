@@ -61,7 +61,8 @@ class AbstractGenerator:
             "AbstractGenerator.__call__() - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def accept(self, visitor):
+    @staticmethod
+    def accept(visitor):
         """
         Execute the visit call on this object.
         """
@@ -69,7 +70,8 @@ class AbstractGenerator:
             "AbstractFace.accept.accept(v) - Implementation Error: you must supply your own concrete implementation."
         )
 
-    def addVisitor(self, visitor):
+    @staticmethod
+    def addVisitor(visitor):
         """
         Method to add the visitor to a list of visitors.
         """

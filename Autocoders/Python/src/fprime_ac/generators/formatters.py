@@ -42,14 +42,16 @@ class CommentFormatters:
         """
         self.__config = ConfigManager.ConfigManager.getInstance()
 
-    def _dlog(self, ddt, arg):
+    @staticmethod
+    def _dlog(ddt, arg):
         """
         Protected debugging method.
         """
         if ddt == 1:
             print(arg)
 
-    def _strip_without_code(self, line_list):
+    @staticmethod
+    def _strip_without_code(line_list):
         """
         A protected method that strips spaces, carriage returns, etc. off each line
         in the list of lines.  Except that lines between a start @code line and
@@ -79,7 +81,8 @@ class CommentFormatters:
 
         return new_line_list
 
-    def _prefix_line(self, str, lines):
+    @staticmethod
+    def _prefix_line(str, lines):
         """
         Prefix a string of lines with str, each line must end with '\n'.
         """
@@ -96,7 +99,8 @@ class CommentFormatters:
 
         return new_lines
 
-    def _getStartExcludingNewlines(self, line_list):
+    @staticmethod
+    def _getStartExcludingNewlines(line_list):
         """
         Eddie B. added 7 Aug. 2007
         Returns the first non-return element in a list
@@ -113,7 +117,8 @@ class CommentFormatters:
 
         return -1
 
-    def _getEndsExcludingNewlines(self, line_list):
+    @staticmethod
+    def _getEndsExcludingNewlines(line_list):
         """
         Eddie B. added 7 Aug. 2007
         Return the index last element of the list + 1, with the thrown away
@@ -132,7 +137,8 @@ class CommentFormatters:
 
         return -1
 
-    def _wrapText(self, text, indent, prefix, width=70):
+    @staticmethod
+    def _wrapText(text, indent, prefix, width=70):
         """
         This function formats a block of text. The text is broken into
         tokens. (Whitespace is NOT preserved.) The tokens are reassembled
@@ -441,7 +447,8 @@ class Formatters:
             Formatters.__instance = Formatters()
         return Formatters.__instance
 
-    def _dlog(self, ddt, arg):
+    @staticmethod
+    def _dlog(ddt, arg):
         """
         Protected debugging method.
         """
@@ -471,7 +478,8 @@ class Formatters:
 
         return (t2[0], t2[1], t2[2])
 
-    def capFirstChar(self, s):
+    @staticmethod
+    def capFirstChar(s):
         """
         Capitalize the first character of string name.
         """
@@ -482,7 +490,8 @@ class Formatters:
     #  OLD MSL FORMATTERS FROM HERE DOWN...
     #
     #########################################################################
-    def functionStringName(self, id, name, str, itype="iface", verbose=True):
+    @staticmethod
+    def functionStringName(id, name, str, itype="iface", verbose=True):
         """
         Return a function name as specified in the MSL coding style guidelines
         document. If the type is a command interface (cface), then check for
@@ -569,7 +578,8 @@ class Formatters:
         """
         return self.functionStringName(id, name, "_ac_unpack", itype, verbose)
 
-    def function_handler_name(self, id, name):
+    @staticmethod
+    def function_handler_name(id, name):
         """
         Return a mod_unpack_name form name.
         @param id: The module id.
@@ -578,7 +588,8 @@ class Formatters:
         name_str = name + "_handler"
         return name_str
 
-    def msgTypedefName(self, id, name, name_sep="AcMsg"):
+    @staticmethod
+    def msgTypedefName(id, name, name_sep="AcMsg"):
         """
         Return the name of msg typedef from an import function name.
         @param id: The module id.
@@ -613,7 +624,8 @@ class Formatters:
         # print new_name
         return new_name
 
-    def msgUnionArgName(self, msg_type):
+    @staticmethod
+    def msgUnionArgName(msg_type):
         """
         Return the name of a standard argument for a union
         used to determine the maximum size of a message type.
@@ -631,7 +643,8 @@ class Formatters:
         else:
             return "None"
 
-    def msgTokenName(self, id, name):
+    @staticmethod
+    def msgTokenName(id, name):
         """
         Return the name of msg typedef
         from an input function name.
@@ -652,7 +665,8 @@ class Formatters:
         new_name = new_name.join(name_list)
         return new_name
 
-    def opcodeName(self, id, name):
+    @staticmethod
+    def opcodeName(id, name):
         """
         Return the name of command opcode
         from an input function name.
@@ -727,7 +741,8 @@ class Formatters:
                 raise Exception("Error detected repeated command stem name.")
         return True
 
-    def evrNamePrefix(self, name):
+    @staticmethod
+    def evrNamePrefix(name):
         """
         Return an evr prefix name to use
         after the module id but before
@@ -741,7 +756,8 @@ class Formatters:
         new_name = new_name.join(name_list)
         return new_name
 
-    def bufferArgsPresent(self, args):
+    @staticmethod
+    def bufferArgsPresent(args):
         """
         Given a list of argument tuples
         return True if an array arg is
@@ -749,7 +765,8 @@ class Formatters:
         """
         return any(arg[3] != "" for arg in args)
 
-    def commentInArgsPresent(self, args):
+    @staticmethod
+    def commentInArgsPresent(args):
         """
         Given a list of argument tuples
         return True if a comment for
@@ -765,7 +782,8 @@ class Formatters:
     # Methods formatting methods.
     ##########################################
 
-    def argNameConvert(self, arg):
+    @staticmethod
+    def argNameConvert(arg):
         """
         Return function argument in the
         form of type arg, for either
@@ -1190,7 +1208,8 @@ class Formatters:
 
         return formatted_line
 
-    def argStringAlign(self, type_list, arg_list, pad_spaces=4):
+    @staticmethod
+    def argStringAlign(type_list, arg_list, pad_spaces=4):
         """
         Method to align generic type/argument
         sets found in struct, typedefs and unions.
@@ -1217,7 +1236,8 @@ class Formatters:
 
         return str_list
 
-    def typeValue(self, arg):
+    @staticmethod
+    def typeValue(arg):
         """
         Function to return type as a value.
         """
@@ -1226,7 +1246,8 @@ class Formatters:
         else:
             return arg
 
-    def getPassByPointer(self, arg):
+    @staticmethod
+    def getPassByPointer(arg):
         # EGB pass by pointer: This is to allow pointers to be passed directly via IPC
         if len(arg) == 7:
             # 7 is the case for a properly parsed iface
@@ -1288,7 +1309,8 @@ class Formatters:
         """
         return mod_id != self.subThreadDir(mod_id)
 
-    def subThreadDir(self, module_id):
+    @staticmethod
+    def subThreadDir(module_id):
         """
         Return the module directory for single thread and multi-thread modules.
         """
@@ -1304,7 +1326,8 @@ class Formatters:
             raise ValueError(str)
         return mod_id_dir
 
-    def subThreadModuleFirstCap(self, mod_id):
+    @staticmethod
+    def subThreadModuleFirstCap(mod_id):
         """
         Return the module id and subtask with first capital letter
         and no '_' in string form.

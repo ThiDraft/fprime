@@ -42,7 +42,8 @@ class schema_test:
             # Compile schema file
             self.__compiled = etree.RelaxNG(relax_parsed)
 
-    def __validate_file(self, file_name, extension):
+    @staticmethod
+    def __validate_file(file_name, extension):
         """
         Ensures file exists and has the proper extension.
         """
@@ -58,7 +59,8 @@ class schema_test:
 
         return True
 
-    def __get_parsed_relaxng(self, file_path):
+    @staticmethod
+    def __get_parsed_relaxng(file_path):
         """
         Returns root tag assuming file path is correct
         """

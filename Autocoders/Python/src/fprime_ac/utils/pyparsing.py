@@ -747,10 +747,12 @@ class ParserElement:
 
         return loc
 
-    def parseImpl(self, instring, loc, doActions=True):
+    @staticmethod
+    def parseImpl(instring, loc, doActions=True):
         return loc, []
 
-    def postParse(self, instring, loc, tokenlist):
+    @staticmethod
+    def postParse(instring, loc, tokenlist):
         return tokenlist
 
     # ~ @profile

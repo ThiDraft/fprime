@@ -76,7 +76,8 @@ class PortCppVisitor(AbstractVisitor.AbstractVisitor):
         self.bodytext = ""
         self.prototypetext = ""
 
-    def _get_args_proto_string(self, obj):
+    @staticmethod
+    def _get_args_proto_string(obj):
         """
         Return a string of (type, name) args, comma separated
         for use in templates that generate prototypes.
@@ -120,7 +121,8 @@ class PortCppVisitor(AbstractVisitor.AbstractVisitor):
         arg_str = arg_str.strip(", ")
         return arg_str
 
-    def _get_args_string(self, obj):
+    @staticmethod
+    def _get_args_string(obj):
         """
         Return a string of name args, comma separated
         for use in templates that generate method or function calls.
@@ -133,7 +135,8 @@ class PortCppVisitor(AbstractVisitor.AbstractVisitor):
         arg_str = arg_str.strip(", ")
         return arg_str
 
-    def _get_args_list(self, obj):
+    @staticmethod
+    def _get_args_list(obj):
         """
         Return a list of port argument tuples
         """
@@ -282,7 +285,8 @@ class PortCppVisitor(AbstractVisitor.AbstractVisitor):
         @param args: the instance of the concrete element to operation on.
         """
 
-    def _replace_enum(self, t):
+    @staticmethod
+    def _replace_enum(t):
         """
         For list of [(name, type),...] args get just the enum type.
         """

@@ -49,7 +49,8 @@ class AbstractParser:
         Constructor.
         """
 
-    def get(self, name):
+    @staticmethod
+    def get(name):
         """
         Get data content from XML tree.
         @param name: Name of tag to return.
@@ -59,7 +60,8 @@ class AbstractParser:
             "AbstractFace.__call__() - Implementation Error: you must supply your own concrete implementation of get(...)."
         )
 
-    def getAttr(self, name):
+    @staticmethod
+    def getAttr(name):
         """
         Get attributes content from XML tree.
         @param name: Name of tag to return.

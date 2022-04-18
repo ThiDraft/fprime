@@ -133,7 +133,8 @@ class TlmPacketParser(object):
         PRINT.debug("Type: %s size: %d", type, size)
         self.size_dict[type] = size
 
-    def get_type_size(self, type_name, size):
+    @staticmethod
+    def get_type_size(type_name, size):
 
         # switch based on type
         if type == "string":

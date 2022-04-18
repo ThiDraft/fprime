@@ -19,7 +19,8 @@ class TestWriterBase(ComponentWriterBase.ComponentWriterBase):
     A base class for component test writers
     """
 
-    def transformEnumType(self, c, type, typeinfo):
+    @staticmethod
+    def transformEnumType(c, type, typeinfo):
         return c.component_base + "::" + type if typeinfo == "enum" else type
 
     def getTlmType(self, c):
@@ -84,7 +85,8 @@ class TestWriterBase(ComponentWriterBase.ComponentWriterBase):
 
         return f
 
-    def getParamPort(self, c):
+    @staticmethod
+    def getParamPort(c):
         def f(instance, type):
             namespace = c.port_namespaces[type]
             if namespace is None:

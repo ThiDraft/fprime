@@ -215,7 +215,8 @@ class TopoFactory:
 
         return the_topology
 
-    def __id_to_int(self, id_string):
+    @staticmethod
+    def __id_to_int(id_string):
         """
         Converts ID to int. If the item is hex, it will be converted to an base 10 int.
         """
@@ -358,7 +359,8 @@ class TopoFactory:
         if highest_ID is not None:
             return highest_ID + 1
 
-    def __compute_component_ID_amount(self, comp_xml):
+    @staticmethod
+    def __compute_component_ID_amount(comp_xml):
         """
         Computes the max amount of IDs found in an XMLComponentParser object.
         """

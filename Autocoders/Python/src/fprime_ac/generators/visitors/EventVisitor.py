@@ -74,7 +74,8 @@ class EventVisitor(AbstractVisitor.AbstractVisitor):
         self.bodytext = ""
         self.prototypetext = ""
 
-    def _writeTmpl(self, c, fp, visit_str):
+    @staticmethod
+    def _writeTmpl(c, fp, visit_str):
         """
         Wrapper to write tmpl to files desc.
         """

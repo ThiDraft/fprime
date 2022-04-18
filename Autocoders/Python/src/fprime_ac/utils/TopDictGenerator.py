@@ -260,7 +260,8 @@ class TopDictGenerator:
                 event_elem.append(args_elem)
                 self.__event_list.append(event_elem)
 
-    def __extract_enum_elem(self, type_name, member):
+    @staticmethod
+    def __extract_enum_elem(type_name, member):
         enum_value = 0
         # Add enum entry
         enum_elem = etree.Element("enum")

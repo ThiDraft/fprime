@@ -366,7 +366,8 @@ class GenFactory:
         #
         return self.__visitor_list
 
-    def _addVisitor(self, type_obj, visitor_list):
+    @staticmethod
+    def _addVisitor(type_obj, visitor_list):
         """
         Method to add the visitors to the created object.
         @param type_obj: input element object instance.

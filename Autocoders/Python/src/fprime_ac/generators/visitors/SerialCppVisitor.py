@@ -80,7 +80,8 @@ class SerialCppVisitor(AbstractVisitor.AbstractVisitor):
         self.bodytext = ""
         self.prototypetext = ""
 
-    def _get_args_proto_string(self, obj):
+    @staticmethod
+    def _get_args_proto_string(obj):
         """
         Return a string of (type, name) args, comma separated
         for use in templates that generate prototypes.
@@ -114,7 +115,8 @@ class SerialCppVisitor(AbstractVisitor.AbstractVisitor):
         arg_str = arg_str.strip(", ")
         return arg_str
 
-    def _get_args_string(self, obj, prefix=""):
+    @staticmethod
+    def _get_args_string(obj, prefix=""):
         """
         Return a string of name args, comma separated
         for use in templates that generate method or function calls.
@@ -134,7 +136,8 @@ class SerialCppVisitor(AbstractVisitor.AbstractVisitor):
         arg_str = arg_str.strip(", ")
         return arg_str
 
-    def _get_conv_mem_list(self, obj):
+    @staticmethod
+    def _get_conv_mem_list(obj):
         """
         Return a list of struct member tuples
         """
@@ -164,7 +167,8 @@ class SerialCppVisitor(AbstractVisitor.AbstractVisitor):
             )
         return arg_list
 
-    def _get_args_proto_string_scalar_init(self, obj):
+    @staticmethod
+    def _get_args_proto_string_scalar_init(obj):
         """
         Return a string of (type, name) args, comma separated
         for use in templates that generate prototypes where the array

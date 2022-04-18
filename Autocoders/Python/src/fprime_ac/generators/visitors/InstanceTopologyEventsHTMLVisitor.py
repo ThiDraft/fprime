@@ -148,7 +148,8 @@ class InstanceTopologyEventsHTMLVisitor(AbstractVisitor.AbstractVisitor):
         @param args: the instance of the concrete element to operation on.
         """
 
-    def argsString(self, args):
+    @staticmethod
+    def argsString(args):
         """
         Make a list of args into a string
         """
