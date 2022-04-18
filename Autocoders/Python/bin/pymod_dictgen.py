@@ -219,7 +219,6 @@ def write_pymods_from_comp(the_parsed_component_xml, opt, topology_model):
         port_file = search_for_file("Port", port_file)
         xml_parser_obj = XmlPortsParser.XmlPortsParser(port_file)
         parsed_port_xml_list.append(xml_parser_obj)
-        del xml_parser_obj
 
     serializable_type_files_list = (
         the_parsed_component_xml.get_serializable_type_files()
@@ -239,7 +238,6 @@ def write_pymods_from_comp(the_parsed_component_xml, opt, topology_model):
             sys.exit(-1)
 
         parsed_serializable_xml_list.append(xml_parser_obj)
-        del xml_parser_obj
 
     model = CompFactory.CompFactory.getInstance()
     component_model = model.create(
@@ -301,7 +299,7 @@ def main():
     ConfigManager.ConfigManager.getInstance()
 
     # Check for BUILD_ROOT env. variable
-    if ("BUILD_ROOT" in os.environ.keys()) == False:
+    if ("BUILD_ROOT" in os.environ.keys()) is False:
         print("ERROR: Build root not set to root build path...")
         sys.exit(-1)
     else:
@@ -331,7 +329,7 @@ def main():
         if VERBOSE:
             print("BUILD_ROOT set to %s" % ",".join(get_build_roots()))
     else:
-        if ("BUILD_ROOT" in os.environ.keys()) == False:
+        if ("BUILD_ROOT" in os.environ.keys()) is False:
             print("ERROR: Build root not set to root build path...")
             sys.exit(-1)
         set_build_roots(os.environ["BUILD_ROOT"])

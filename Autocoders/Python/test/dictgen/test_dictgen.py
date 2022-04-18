@@ -69,15 +69,17 @@ def remove_headers(filename):
         # Skip_docstring removes all lines in between two """ characters
         skip_docstring = False
         for line in lines:
-            if not skip_docstring:
-                if not (
-                    num == 0
-                    and ("*" in line or "//" in line or "'''" in line or '"""' in line)
-                ):
-                    # Don't want to print empty first line
-                    if num != 0 or line.strip():
-                        f.write(line)
-                        num += 1
+            if (
+                not skip_docstring
+                and not (
+                num == 0
+                and ("*" in line or "//" in line or "'''" in line or '"""' in line)
+            )
+                and num != 0
+                or line.strip()
+            ):
+                f.write(line)
+                num += 1
 
             if "'''" in line or '"""' in line:
                 skip_docstring = not skip_docstring
@@ -218,27 +220,29 @@ def find_enum_from_dict(opened_dict, enum_list, type):
             for child in channel.getchildren():
                 if child.tag == "args":
                     for arg in child.getchildren():
-                        if "type" in arg.attrib:
-                            if arg.attrib["type"] == "ENUM":
-                                enum_list[type].append(arg.getchildren()[0])
+                        if "type" in arg.attrib and arg.attrib["type"] == "ENUM":
+                            enum_list[type].append(arg.getchildren()[0])
     elif opened_dict.tag == "events":
         for event in opened_dict.getchildren():
             for child in event.getchildren():
                 if child.tag == "args":
                     for arg in child.getchildren():
-                        if "type" in arg.attrib:
-                            if arg.attrib["type"] == "ENUM":
-                                enum_list[type].append(arg.getchildren()[0])
+                        if "type" in arg.attrib and arg.attrib["type"] == "ENUM":
+                            enum_list[type].append(arg.getchildren()[0])
     elif opened_dict.tag == "telemetry":
         for channel in opened_dict.getchildren():
-            if "data_type" in channel.attrib:
-                if channel.attrib["data_type"] == "ENUM":
-                    enum_list[type].append(channel.getchildren()[0])
+            if (
+                "data_type" in channel.attrib
+                and channel.attrib["data_type"] == "ENUM"
+            ):
+                enum_list[type].append(channel.getchildren()[0])
     elif opened_dict.tag == "parameters":
         for param in opened_dict.getchildren():
-            if "data_type" in param.attrib:
-                if param.attrib["data_type"] == "ENUM":
-                    enum_list[type].append(param.get_children()[0])
+            if (
+                "data_type" in param.attrib
+                and param.attrib["data_type"] == "ENUM"
+            ):
+                enum_list[type].append(param.get_children()[0])
 
 
 def check_generated_files(testdir):
@@ -643,23 +647,27 @@ def compare_serials_ai_gds(topology_serials, gds_serials):
             assert False
         # Check members
         for child in top_serial:
-            if "type" in child.keys():
-                if not child.attrib["type"] in member_types[top_serial_type]:
-                    print(
-                        "ERROR: Serial member type {} from ".format(
-                            child.attrib["type"]
-                        )
-                        + "topology ai imported dict not found in gds dict"
+            if (
+                "type" in child.keys()
+                and not child.attrib["type"] in member_types[top_serial_type]
+            ):
+                print(
+                    "ERROR: Serial member type {} from ".format(
+                        child.attrib["type"]
                     )
-                    assert False
-            if "name" in child.keys():
-                if not child.attrib["name"] in member_types[top_serial_type]:
-                    print(
-                        "ERROR: Serial member name {} from ".format(
-                            child.attrib["name"]
-                        )
-                        + "topology ai imported dict not found in gds dict"
+                    + "topology ai imported dict not found in gds dict"
+                )
+                assert False
+            if (
+                "name" in child.keys()
+                and not child.attrib["name"] in member_types[top_serial_type]
+            ):
+                print(
+                    "ERROR: Serial member name {} from ".format(
+                        child.attrib["name"]
                     )
+                    + "topology ai imported dict not found in gds dict"
+                )
 
     print("Serializable check run successfully")
 
@@ -713,13 +721,15 @@ def compare_enums_ai_gds(topology_enums, gds_enums):
             assert False
         # Check item names
         for child in top_enum:
-            if "name" in child.keys():
-                if not child.attrib["name"] in items[top_enum_name]:
-                    print(
-                        "ERROR: Enum item name {} from ".format(child.attrib["name"])
-                        + "topology ai imported dict not found in gds dict"
-                    )
-                    assert False
+            if (
+                "name" in child.keys()
+                and not child.attrib["name"] in items[top_enum_name]
+            ):
+                print(
+                    "ERROR: Enum item name {} from ".format(child.attrib["name"])
+                    + "topology ai imported dict not found in gds dict"
+                )
+                assert False
 
     print("Enum check run successfully")
 

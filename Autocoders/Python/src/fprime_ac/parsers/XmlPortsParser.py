@@ -62,7 +62,7 @@ class XmlPortsParser:
         self.__enum_list_items = []
         self.__modifier = None
         #
-        if os.path.isfile(xml_file) == False:
+        if os.path.isfile(xml_file) is False:
             str = "ERROR: Could not find specified XML file %s." % xml_file
             raise OSError(str)
         fd = open(xml_file)
@@ -122,7 +122,7 @@ class XmlPortsParser:
                     else:
                         p = None
                     if t in ("string", "buffer"):
-                        if not "size" in list(arg.attrib.keys()):
+                        if "size" not in list(arg.attrib.keys()):
                             PRINT.info(
                                 "%s: arg %s string must specify size tag", xml_file, arg.tag)
                             sys.exit(-1)

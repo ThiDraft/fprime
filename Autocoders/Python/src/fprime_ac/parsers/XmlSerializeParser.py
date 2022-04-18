@@ -88,7 +88,7 @@ class XmlSerializeParser:
         # Type ID for serialized type
         self.__type_id = None
         #
-        if os.path.isfile(xml_file) == False:
+        if os.path.isfile(xml_file) is False:
             stri = "ERROR: Could not find specified XML file %s." % xml_file
             raise OSError(stri)
         fd = open(xml_file)
@@ -210,11 +210,11 @@ class XmlSerializeParser:
                             f = format_dictionary[t]
                         else:  # Must be included type, which will use toString method
                             f = "%s"
-                    if t == "string":
-                        if size is None:
+                    if t == "string" and size is None:
                             PRINT.info(
                                 "%s: member %s string must specify size tag", xml_file, member.tag)
-                            sys.exit(-1)
+                        )
+                        sys.exit(-1)
 
                     if "comment" in list(member.attrib.keys()):
                         c = member.attrib["comment"]

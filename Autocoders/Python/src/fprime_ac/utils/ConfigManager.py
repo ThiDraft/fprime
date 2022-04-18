@@ -56,6 +56,7 @@ class ConfigManager(parent):
         files.append(os.path.join(os.path.realpath(os.curdir), config_file_name))
         self.read(files)
 
+    @staticmethod
     def getInstance():
         """
         Return instance of singleton.
@@ -63,9 +64,6 @@ class ConfigManager(parent):
         if ConfigManager.__instance is None:
             ConfigManager.__instance = ConfigManager()
         return ConfigManager.__instance
-
-    # define static method
-    getInstance = staticmethod(getInstance)
 
     def _setProps(self):
         """

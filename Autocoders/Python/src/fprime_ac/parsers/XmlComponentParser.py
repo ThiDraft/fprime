@@ -72,7 +72,7 @@ class XmlComponentParser:
         )
 
         #
-        if os.path.isfile(xml_file) == False:
+        if os.path.isfile(xml_file) is False:
             stri = "ERROR: Could not find specified XML file %s." % xml_file
             raise OSError(stri)
 
@@ -473,7 +473,7 @@ class XmlComponentParser:
                         a = None
                     s = None
                     if d == "string":
-                        if not "size" in list(channel.attrib.keys()):
+                        if "size" not in list(channel.attrib.keys()):
                             PRINT.info(
                                 "%s: Telemetry channel %s string value must specify a size", xml_file, n)
                             sys.exit(-1)
@@ -619,7 +619,7 @@ class XmlComponentParser:
                                 t = arg.attrib["type"]
                                 s = None
                                 if t == "string":
-                                    if not "size" in list(arg.attrib.keys()):
+                                    if "size" not in list(arg.attrib.keys()):
                                         PRINT.info(
                                             "%s: Event %s string argument %s must specify a size", xml_file, event.attrib["name"], n)
                                         sys.exit(-1)
@@ -741,7 +741,7 @@ class XmlComponentParser:
 
                     s = None
                     if d == "string":
-                        if not "size" in list(parameter.attrib.keys()):
+                        if "size" not in list(parameter.attrib.keys()):
                             PRINT.info(
                                 "%s: Parameter %s string value must specify a size", xml_file, n)
                             sys.exit(-1)
@@ -920,14 +920,16 @@ class XmlComponentParser:
                     param["ParamSet"] = True
 
             ## Check for Telemetry
-            if has_telemetry:
-                if port.get_role() == "Telemetry":
-                    Telemetry = True
+            if has_telemetry and port.get_role() == "Telemetry":
+                Telemetry = True
 
             ## Check for Time
-            if has_telemetry or has_events:
-                if port.get_role() == "TimeGet":
-                    Time = True
+            if (
+                has_telemetry
+                or has_events
+                and port.get_role() == "TimeGet"
+            ):
+                Time = True
 
             ## Check Log(Text)Event
             if has_events:
@@ -967,7 +969,7 @@ class XmlComponentParser:
             ## Ports Missing: Aborting
             else:
                 for port, value in cmd_or_param.items():
-                    if value == False:
+                    if value is False:
                         PRINT.info("%s port missing", port)
                 PRINT.info("Aborting")
                 sys.exit(-1)
@@ -990,7 +992,7 @@ class XmlComponentParser:
             ## Ports Missing: Abort
             else:
                 for port, value in param.items():
-                    if value == False:
+                    if value is False:
                         PRINT.info("%s port missing", port)
                 PRINT.info("Aborting")
                 sys.exit(-1)

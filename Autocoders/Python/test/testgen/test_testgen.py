@@ -137,15 +137,17 @@ def remove_headers(filename):
         # Skip_docstring removes all lines in between two """ characters
         skip_docstring = False
         for line in lines:
-            if not skip_docstring:
-                if not (
-                    num == 0
-                    and ("*" in line or "//" in line or "'''" in line or '"""' in line)
-                ):
-                    # Don't want to print empty first line
-                    if num != 0 or line.strip():
-                        f.write(line)
-                        num += 1
+            if (
+                not skip_docstring
+                and not (
+                num == 0
+                and ("*" in line or "//" in line or "'''" in line or '"""' in line)
+            )
+                and num != 0
+                or line.strip()
+            ):
+                f.write(line)
+                num += 1
 
             if "'''" in line or '"""' in line:
                 skip_docstring = not skip_docstring

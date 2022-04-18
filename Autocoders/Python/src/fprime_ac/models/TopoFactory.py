@@ -98,6 +98,7 @@ class TopoFactory:
         """
         self.__generate_new_IDS = value
 
+    @staticmethod
     def getInstance():
         """
         Return instance of singleton.
@@ -106,9 +107,6 @@ class TopoFactory:
             TopoFactory.__instance = TopoFactory()
 
         return TopoFactory.__instance
-
-    # define static method
-    getInstance = staticmethod(getInstance)
 
     def create(self, the_parsed_topology_xml, generate_list_file=True):
         """

@@ -55,7 +55,7 @@ class XmlTopologyParser:
         self.__name = None
         self.__deployment = None
         self.__comment = ""
-        if os.path.isfile(xml_file) == False:
+        if os.path.isfile(xml_file) is False:
             stri = "ERROR: Could not find specified XML file %s." % xml_file
             raise OSError(stri)
 
@@ -116,9 +116,11 @@ class XmlTopologyParser:
                 else:
                     self.__base_id_window = None
 
-                if "prepend_instance_name" in e.attrib:
-                    if e.attrib["prepend_instance_name"].upper() == "TRUE":
-                        self.__prepend_instance_name = True
+                if (
+                    "prepend_instance_name" in e.attrib
+                    and e.attrib["prepend_instance_name"].upper() == "TRUE"
+                ):
+                    self.__prepend_instance_name = True
                 #
                 # The deployment attribute added so that instance
                 # dictionaries are installed in the correct place.
@@ -215,7 +217,7 @@ class XmlTopologyParser:
                     xml_file, str(bre)
                 )
                 raise OSError(stri)
-            if os.path.exists(xml_file) == True:
+            if os.path.exists(xml_file) is True:
                 PRINT.info("Found component XML file: %s", xml_file)
                 xml_parsed = XmlComponentParser.XmlComponentParser(xml_file)
                 for inst in self.get_instances():

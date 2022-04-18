@@ -338,7 +338,6 @@ class ParseResults:
                     v[0].__parent = self
         self.__toklist += other.__toklist
         self.__accumNames.update(other.__accumNames)
-        del other
         return self
 
     def __repr__(self):
@@ -535,9 +534,7 @@ def col(loc, strg):
     """Returns current column within a string, counting newlines as line separators.
     The first column is number 1.
     """
-    return (
-        (loc < len(strg) and strg[loc] == "\n") and 1 or loc - strg.rfind("\n", 0, loc)
-    )
+    return 1 if (loc < len(strg) and strg[loc] == "\n") else loc - strg.rfind("\n", 0, loc)
 
 
 def lineno(loc, strg):
@@ -584,11 +581,10 @@ class ParserElement:
 
     DEFAULT_WHITE_CHARS = " \n\t\r"
 
+    @staticmethod
     def setDefaultWhitespaceChars(chars):
         """Overrides the default whitespace chars"""
         ParserElement.DEFAULT_WHITE_CHARS = chars
-
-    setDefaultWhitespaceChars = staticmethod(setDefaultWhitespaceChars)
 
     def __init__(self, savelist=False):
         self.parseAction = list()
@@ -639,6 +635,7 @@ class ParserElement:
         newself.modalResults = not listAllMatches
         return newself
 
+    @staticmethod
     def normalizeParseActionArgs(f):
         """Internal method used to decorate parse actions that take fewer than 3 arguments,
         so that all parse actions can be called as f(s,l,t)."""
@@ -693,8 +690,6 @@ class ParserElement:
                     return f()
 
             return tmp
-
-    normalizeParseActionArgs = staticmethod(normalizeParseActionArgs)
 
     def setParseAction(self, *fns):
         """Define action to perform when successfully matching parse element definition.
@@ -872,13 +867,13 @@ class ParserElement:
     # argument cache for optimizing repeated calls when backtracking through recursive expressions
     _exprArgCache = {}
 
+    @staticmethod
     def resetCache():
         ParserElement._exprArgCache.clear()
 
-    resetCache = staticmethod(resetCache)
-
     _packratEnabled = False
 
+    @staticmethod
     def enablePackrat():
         """Enables "packrat" parsing, which adds memoizing to the parsing logic.
         Repeated parse attempts at the same string location (which happens
@@ -898,8 +893,6 @@ class ParserElement:
         if not ParserElement._packratEnabled:
             ParserElement._packratEnabled = True
             ParserElement._parse = ParserElement._parseCache
-
-    enablePackrat = staticmethod(enablePackrat)
 
     def parseString(self, instring):
         """Execute the parse expression with the given string.
@@ -1321,11 +1314,10 @@ class Keyword(Token):
         c.identChars = Keyword.DEFAULT_KEYWORD_CHARS
         return c
 
+    @staticmethod
     def setDefaultKeywordChars(chars):
         """Overrides the default Keyword chars"""
         Keyword.DEFAULT_KEYWORD_CHARS = chars
-
-    setDefaultKeywordChars = staticmethod(setDefaultKeywordChars)
 
 
 class CaselessLiteral(Literal):
@@ -1663,11 +1655,7 @@ class QuotedString(Token):
         self.mayReturnEmpty = True
 
     def parseImpl(self, instring, loc, doActions=True):
-        result = (
-            instring[loc] == self.firstQuoteChar
-            and self.re.match(instring, loc)
-            or None
-        )
+        result = self.re.match(instring, loc) if instring[loc] == self.firstQuoteChar else None
         if not result:
             exc = self.myException
             exc.loc = loc
@@ -2221,15 +2209,13 @@ class MatchFirst(ParseExpression):
                         instring, len(instring), e.errmsg, self
                     )
                     maxExcLoc = len(instring)
-
-        # only got here if no expression matched, raise exception for match that made it the furthest
+            
+        if self.exprs:
+            raise maxException
         else:
-            if self.exprs:
-                raise maxException
-            else:
-                raise ParseException(
-                    instring, loc, "no defined alternatives to match", self
-                )
+            raise ParseException(
+                instring, loc, "no defined alternatives to match", self
+            )
 
     def __ior__(self, other):
         if isinstance(other, str):
@@ -3139,7 +3125,7 @@ def keepOriginalText(s, startLoc, t):
     try:
         endloc = f.f_locals["loc"]
     finally:
-        del f
+        pass
     return s[startLoc:endloc]
 
 
