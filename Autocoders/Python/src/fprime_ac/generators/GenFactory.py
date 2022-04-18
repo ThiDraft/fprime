@@ -219,6 +219,7 @@ class GenFactory:
         self.__instance = None
         self.__configured_visitors = dict()
 
+    @staticmethod
     def getInstance():
         """
         Return instance of singleton.
@@ -229,9 +230,6 @@ class GenFactory:
         #
         #         return GenFactory.__instance
         return GenFactory()
-
-    # define static method
-    getInstance = staticmethod(getInstance)
 
     def create(self, the_type):
         """
@@ -360,9 +358,9 @@ class GenFactory:
             for inst in self.__configured_visitors:
                 config = self.__configured_visitors[inst]
                 # If enabled instance it and place in list
-                if config.getEnabled() == True:
+                if config.getEnabled() is True:
                     visitor = config.Instance()
-                    if config.getGenerateCode() == False:
+                    if config.getGenerateCode() is False:
                         visitor.setGenerateEmptyFile()
                     self.__visitor_list.append(visitor)
         #

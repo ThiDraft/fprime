@@ -74,7 +74,7 @@ class Parser:
         Convert and return the filename as a single string.
         """
 
-        if os.path.isfile(filename) == False:
+        if os.path.isfile(filename) is False:
             str = "ERROR: Could not find specified XML file %s." % filename
             PRINT.info(str)
             raise OSError(str)
@@ -209,7 +209,7 @@ class Parser:
                 # requirement for parsing a second file is that it has a same
                 # named root Element.
 
-                if self.__root is not None and root_name_checked == False:
+                if self.__root is not None and root_name_checked is False:
 
                     if self.__root.getName() == name:
 
@@ -379,14 +379,13 @@ class Parser:
                 try:
                     found[childName] += 1
                     DEBUG.debug(
-                        "duplicate %s for %d time" % (childName, found[childName])
-                    )
+                        "duplicate %s for %d time", childName, found[childName])
                 except KeyError:
                     found[childName] = 1
-                    DEBUG.debug("first %s" % childName)
+                    DEBUG.debug("first %s", childName)
             else:
                 unexpectedChildren.append(childName)
-                DEBUG.debug("unexpected %s" % childName)
+                DEBUG.debug("unexpected %s", childName)
 
         return (found, unexpectedChildren, errMsg)
 

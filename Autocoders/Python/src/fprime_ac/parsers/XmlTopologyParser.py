@@ -55,7 +55,7 @@ class XmlTopologyParser:
         self.__name = None
         self.__deployment = None
         self.__comment = ""
-        if os.path.isfile(xml_file) == False:
+        if os.path.isfile(xml_file) is False:
             stri = "ERROR: Could not find specified XML file %s." % xml_file
             raise OSError(stri)
 
@@ -116,9 +116,11 @@ class XmlTopologyParser:
                 else:
                     self.__base_id_window = None
 
-                if "prepend_instance_name" in e.attrib:
-                    if e.attrib["prepend_instance_name"].upper() == "TRUE":
-                        self.__prepend_instance_name = True
+                if (
+                    "prepend_instance_name" in e.attrib
+                    and e.attrib["prepend_instance_name"].upper() == "TRUE"
+                ):
+                    self.__prepend_instance_name = True
                 #
                 # The deployment attribute added so that instance
                 # dictionaries are installed in the correct place.
@@ -200,7 +202,7 @@ class XmlTopologyParser:
             elif e.tag == etree.Comment:
                 pass
             else:
-                PRINT.info("WARNING: Unrecognized topology tag! %s" % (e.tag))
+                PRINT.info("WARNING: Unrecognized topology tag! %s", (e.tag))
             # print "%s %s %s" % (e.tag, e.text, e.attrib)
         #
         # For each component xml file specified assign it to a component instance object
@@ -209,25 +211,21 @@ class XmlTopologyParser:
             try:
                 xml_file = locate_build_root(xml_file)
             except BuildRootMissingException:
-                PRINT.info("WARNING: Could not find XML file: %s" % xml_file)
+                PRINT.info("WARNING: Could not find XML file: %s", xml_file)
             except BuildRootCollisionException as bre:
                 stri = "ERROR: Could not find specified dictionary XML file. {}. Error: {}".format(
                     xml_file, str(bre)
                 )
                 raise OSError(stri)
-            if os.path.exists(xml_file) == True:
-                PRINT.info("Found component XML file: %s" % xml_file)
+            if os.path.exists(xml_file) is True:
+                PRINT.info("Found component XML file: %s", xml_file)
                 xml_parsed = XmlComponentParser.XmlComponentParser(xml_file)
                 for inst in self.get_instances():
                     if inst.get_type() == xml_parsed.get_component().get_name():
                         PRINT.info(
-                            "Populating instance %s of type %s with parser tree"
-                            % (inst.get_name(), inst.get_type())
-                        )
+                            "Populating instance %s of type %s with parser tree", inst.get_name(), inst.get_type())
                         DEBUG.info(
-                            "Populating instance %s of type %s with parser tree"
-                            % (inst.get_name(), inst.get_type())
-                        )
+                            "Populating instance %s of type %s with parser tree", inst.get_name(), inst.get_type())
                         inst.set_comp_xml(xml_parsed)
         #
         # For each instance determine if it is active or passive here...
@@ -243,18 +241,14 @@ class XmlTopologyParser:
 
             if xml_file is None:
                 PRINT.info(
-                    "WARNING: No component XML present setting instance named: %s to kind: %s, maximum ID's used is unknown"
-                    % (name, kind)
-                )
+                    "WARNING: No component XML present setting instance named: %s to kind: %s, maximum ID's used is unknown", name, kind)
             else:
                 k = xml_file.get_component().get_kind()
                 inst.set_kind(k)
                 id_window = self.__max_id_window(inst)
                 inst.set_base_max_id_window(id_window)
                 DEBUG.info(
-                    "Setting Instance name: %s, type: %s, kind: %s, maximum ID space required: %s"
-                    % (name, type, inst.get_kind(), inst.get_base_max_id_window())
-                )
+                    "Setting Instance name: %s, type: %s, kind: %s, maximum ID space required: %s", name, type, inst.get_kind(), inst.get_base_max_id_window())
 
     def validate_xml(self, dict_file, parsed_xml_tree, validator_type, validator_name):
         # Check that validator is valid

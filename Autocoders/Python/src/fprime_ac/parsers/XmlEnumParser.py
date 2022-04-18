@@ -63,7 +63,7 @@ class XmlEnumParser:
 
         self.Config = ConfigManager.ConfigManager.getInstance()
 
-        if os.path.isfile(xml_file) == False:
+        if os.path.isfile(xml_file) is False:
             stri = "ERROR: Could not find specified XML file %s." % xml_file
             raise OSError(stri)
         fd = open(xml_file)
@@ -91,7 +91,7 @@ class XmlEnumParser:
 
         enum = element_tree.getroot()
         if enum.tag != "enum":
-            PRINT.info("%s is not an enum definition file" % xml_file)
+            PRINT.info("%s is not an enum definition file", xml_file)
             sys.exit(-1)
 
         print("Parsing Enum %s" % enum.attrib["name"])

@@ -94,7 +94,7 @@ def connectDebugLogger(
     # Create handlers here
     #
     # stdout for testing
-    if stdout_enable == True:
+    if stdout_enable is True:
         std_output = logging.StreamHandler(sys.stdout)
         std_output.setFormatter(formatter)
         logger.addHandler(std_output)
@@ -109,8 +109,8 @@ def connectDebugLogger(
     if level is None:
         level = 0
     logger.setLevel(level)
-    logger.info("Log file set to: %s" % file)
-    logger.info("Logging level is %s" % level)
-    logger.info("%s author: Leonard J. Reder" % sys.argv[0])
+    logger.info("Log file set to: %s", file)
+    logger.info("Logging level is %s", level)
+    logger.info("%s author: Leonard J. Reder", sys.argv[0])
     logger.info("Email: reder@jpl.nasa.gov")
     return logger

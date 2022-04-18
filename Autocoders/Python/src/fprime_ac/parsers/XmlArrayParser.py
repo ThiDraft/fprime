@@ -93,7 +93,7 @@ class XmlArrayParser(object):
             "string",
         ]
 
-        if os.path.isfile(xml_file) == False:
+        if os.path.isfile(xml_file) is False:
             stri = "ERROR: Could not find specified XML file %s." % xml_file
             raise IOError(stri)
         fd = open(xml_file, "r")
@@ -118,7 +118,7 @@ class XmlArrayParser(object):
 
         array = element_tree.getroot()
         if array.tag != "array":
-            PRINT.info("%s is not an array definition file" % xml_file)
+            PRINT.info("%s is not an array definition file", xml_file)
             sys.exit(-1)
 
         print("Parsing Array %s" % array.attrib["name"])

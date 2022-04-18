@@ -58,7 +58,7 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         """
         Wrapper to write tmpl to files desc.
         """
-        DEBUG.debug("ComponentVisitorBase:%s" % visit_str)
+        DEBUG.debug("ComponentVisitorBase:%s", visit_str)
         DEBUG.debug("===================================")
         DEBUG.debug(c)
         self.__fp.writelines(c.__str__())
@@ -82,9 +82,7 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
                 + self.config("component", self.__visitor)
             )
             DEBUG.info(
-                "Generating code filename: %s, using XML namespace and name attributes..."
-                % filename
-            )
+                "Generating code filename: %s, using XML namespace and name attributes...", filename)
         else:
             xml_file = obj.get_xml_filename()
             x = xml_file.split(".")
@@ -94,7 +92,7 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
                 filename = x[0].split(s[0])[0] + self.config(
                     "component", self.__visitor
                 )
-                DEBUG.info("Generating code filename: %s..." % filename)
+                DEBUG.info("Generating code filename: %s...", filename)
             else:
                 msg = (
                     "XML file naming format not allowed (must be XXXComponentAi.xml), Filename: %s"
@@ -885,7 +883,7 @@ class ComponentVisitorBase(AbstractVisitor.AbstractVisitor):
         """
         Open the file for writing
         """
-        DEBUG.info("Open file: %s" % filename)
+        DEBUG.info("Open file: %s", filename)
         self.__fp = open(filename, "w")
         if self.__fp is None:
             raise Exception("Could not open file %s") % filename

@@ -79,7 +79,7 @@ class EventVisitor(AbstractVisitor.AbstractVisitor):
         """
         Wrapper to write tmpl to files desc.
         """
-        DEBUG.debug("EventVisitor:%s" % visit_str)
+        DEBUG.debug("EventVisitor:%s", visit_str)
         DEBUG.debug("===================================")
         DEBUG.debug(c)
         fp.writelines(c.__str__())
@@ -110,11 +110,11 @@ class EventVisitor(AbstractVisitor.AbstractVisitor):
             for id in obj.get_ids():
                 pyfile = "%s/%s_%d.py" % (output_dir, obj.get_name(), inst)
                 inst += 1
-                DEBUG.info("Open file: %s" % pyfile)
+                DEBUG.info("Open file: %s", pyfile)
                 fd = open(pyfile, "w")
                 if fd is None:
                     raise Exception("Could not open %s file." % pyfile)
-                DEBUG.info("Completed %s open" % pyfile)
+                DEBUG.info("Completed %s open", pyfile)
                 self.__fp.append(fd)
 
     def DictHeaderVisit(self, obj):
@@ -178,9 +178,7 @@ class EventVisitor(AbstractVisitor.AbstractVisitor):
                     # check for an error
                     if format_string is None:
                         PRINT.info(
-                            "Event %s in component %s had error processing format specifier"
-                            % (c.name, c.component)
-                        )
+                            "Event %s in component %s had error processing format specifier", c.name, c.component)
                         sys.exit(-1)
                     else:
                         c.format_string = format_string

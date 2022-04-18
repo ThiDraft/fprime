@@ -80,7 +80,7 @@ class InstCommandWriter(AbstractDictWriter.AbstractDictWriter):
         """
         Wrapper to write tmpl to files desc.
         """
-        DEBUG.debug("InstCommandWriter:%s" % write_str)
+        DEBUG.debug("InstCommandWriter:%s", write_str)
         DEBUG.debug("===================================")
         DEBUG.debug(c)
         fp.writelines(c.__str__())
@@ -105,7 +105,7 @@ class InstCommandWriter(AbstractDictWriter.AbstractDictWriter):
                 obj.get_component_base_name()
             ]
         except Exception:
-            if isinstance(obj, Parameter.Parameter) or isinstance(obj, Command.Command):
+            if isinstance(obj, (Parameter.Parameter, Command.Command)):
                 PRINT.info(
                     "ERROR: Could not find instance object for component "
                     + obj.get_component_base_name()

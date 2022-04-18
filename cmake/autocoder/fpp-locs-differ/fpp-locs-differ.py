@@ -23,7 +23,7 @@ def main():
         sys.exit(1)
     # Previous files not generated
     if not os.path.exists(args_ns.prev_locs):
-        print(f"No pervious locations")
+        print("No pervious locations")
         sys.exit(1)
 
     with open(args_ns.prev_locs, "r") as prev_locs_fh:

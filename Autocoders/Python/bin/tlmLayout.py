@@ -423,9 +423,12 @@ class Packet:
                 self.m_max_field_bits = field.m_bits
 
         for item in self.m_item_list:
-            if not item.m_is_reserve and not item.m_is_constant:
-                if item.m_bits > self.m_max_field_bits:
-                    self.m_max_field_bits = item.m_bits
+            if (
+                not item.m_is_reserve
+                and not item.m_is_constant
+                and item.m_bits > self.m_max_field_bits
+            ):
+                self.m_max_field_bits = item.m_bits
 
         if verbose:
             if tlm_duration is not None:
@@ -596,9 +599,8 @@ def sched_cycle_ids_max(max_cycle):
 
         if cycle_offset is not None:
             for i in range(max_cycle):
-                if i % cycle_offset == 0:
-                    if (i + offset) < max_cycle:
-                        cycle_max_list[i + offset] += 1
+                if i % cycle_offset == 0 and (i + offset) < max_cycle:
+                    cycle_max_list[i + offset] += 1
         # print p.m_id, p.m_freq, p.m_offset
         # print cycle_offset
     # print cycle_max_list
@@ -625,9 +627,8 @@ def sched_cycle_ids(max_cycle):
 
         if cycle_offset is not None:
             for i in range(max_cycle):
-                if i % cycle_offset == 0:
-                    if (i + offset) < max_cycle:
-                        cycle_id_list[i + offset].append(p.m_id)
+                if i % cycle_offset == 0 and (i + offset) < max_cycle:
+                    cycle_id_list[i + offset].append(p.m_id)
 
         # print p.m_id, p.m_freq, p.m_offset
     for id in cycle_id_list:

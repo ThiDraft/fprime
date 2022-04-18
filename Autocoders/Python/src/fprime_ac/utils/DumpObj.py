@@ -112,11 +112,9 @@ def dumpObj(
             objdoc = attr
         elif slot == "__module__":
             objmodule = attr
-        elif isinstance(attr, types.BuiltinMethodType) or isinstance(
-            attr, MethodWrapperType
-        ):
+        elif isinstance(attr, (types.BuiltinMethodType, MethodWrapperType)):
             builtins.append(slot)
-        elif isinstance(attr, types.MethodType) or isinstance(attr, types.FunctionType):
+        elif isinstance(attr, (types.MethodType, types.FunctionType)):
             methods.append((slot, attr))
         elif isinstance(attr, type):
             classes.append((slot, attr))
@@ -124,7 +122,7 @@ def dumpObj(
             attrs.append((slot, attr))
     # If we still don't know object class, try these two approaches
     if objclass is None:
-        objclass = getattr(obj, "__class__").__name__
+        objclass = obj.__class__.__name__
         # This seems a more reliable way to get class names.
         DEBUG.debug("Instance of class '" + str(objclass) + "' at second pass...")
     elif objclass == "":
@@ -284,7 +282,7 @@ def prettyPrint(string, maxlen=75, split=" "):
     lines = []
     oldeol = 0
     eol = 0
-    while not eol in (-1, len(string) - 1):
+    while eol not in (-1, len(string) - 1):
         eol = string.rfind(split, oldeol, oldeol + maxlen + len(split))
         lines.append(string[oldeol:eol])
         oldeol = eol + len(split)

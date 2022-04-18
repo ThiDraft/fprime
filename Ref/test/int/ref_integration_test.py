@@ -150,16 +150,15 @@ class TestRefAppClass(object):
                 last = None
                 reordered = False
                 for item in items:
-                    if last is not None:
-                        if item.get_time() < last.get_time():
-                            self.api.log(
-                                "during iteration #{}, a reordered event was detected: {}".format(
-                                    i, item
-                                )
+                    if last is not None and item.get_time() < last.get_time():
+                        self.api.log(
+                            "during iteration #{}, a reordered event was detected: {}".format(
+                                i, item
                             )
-                            any_reordered = True
-                            reordered = True
-                            break
+                        )
+                        any_reordered = True
+                        reordered = True
+                        break
                     last = item
                 if not reordered:
                     self.api.log(

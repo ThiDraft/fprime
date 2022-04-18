@@ -46,6 +46,7 @@ class PortFactory:
         self.__instance = None
         self.__configured_visitors = dict()
 
+    @staticmethod
     def getInstance():
         """
         Return instance of singleton.
@@ -55,8 +56,6 @@ class PortFactory:
 
         return PortFactory.__instance
 
-    # define static method
-    getInstance = staticmethod(getInstance)
 
     @staticmethod
     def create(the_parsed_port_xml):

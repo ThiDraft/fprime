@@ -156,7 +156,7 @@ class InstanceSerializableVisitor(AbstractVisitor.AbstractVisitor):
         """
         Wrapper to write tmpl to files desc.
         """
-        DEBUG.debug("InstanceSerializableVisitor:%s" % visit_str)
+        DEBUG.debug("InstanceSerializableVisitor:%s", visit_str)
         DEBUG.debug("===================================")
         DEBUG.debug(c)
         self.__fp.writelines(c.__str__())
@@ -190,7 +190,7 @@ class InstanceSerializableVisitor(AbstractVisitor.AbstractVisitor):
         open("{}/{}".format(output_dir, "__init__.py"), "w").close()
 
         # Open file for writing here...
-        DEBUG.info("Open file: %s" % pyfile)
+        DEBUG.info("Open file: %s", pyfile)
         self.__fp = open(pyfile, "w")
         if self.__fp is None:
             raise Exception("Could not open %s file.") % pyfile
@@ -246,9 +246,7 @@ class InstanceSerializableVisitor(AbstractVisitor.AbstractVisitor):
                 # check for an error
                 if format_string is None:
                     PRINT.info(
-                        'Member %s in serializable %s had error processing format specifier "%s"'
-                        % (n, c.name, f)
-                    )
+                        'Member %s in serializable %s had error processing format specifier "%s"', n, c.name, f)
                     sys.exit(-1)
                 else:
                     f = format_string

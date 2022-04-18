@@ -101,9 +101,7 @@ class PortHVisitor(AbstractVisitor.AbstractVisitor):
                     isEnum = True
                 else:
                     PRINT.info(
-                        "ERROR: Ill formed enumeration type...(name: %s, type: %s"
-                        % (arg.get_name(), arg.get_type())
-                    )
+                        "ERROR: Ill formed enumeration type...(name: %s, type: %s", arg.get_name(), arg.get_type())
                     sys.exit(-1)
             else:
                 t = arg.get_type()
@@ -162,9 +160,7 @@ class PortHVisitor(AbstractVisitor.AbstractVisitor):
                     t = "sizeof(NATIVE_INT_TYPE)"
                 else:
                     PRINT.info(
-                        "ERROR: Ill formed enumeration type...(name: %s, type: %s"
-                        % (arg.get_name(), arg.get_type())
-                    )
+                        "ERROR: Ill formed enumeration type...(name: %s, type: %s", arg.get_name(), arg.get_type())
                     sys.exit(-1)
             elif t in [
                 "U8",
@@ -218,7 +214,7 @@ class PortHVisitor(AbstractVisitor.AbstractVisitor):
         """
         Wrapper to write tmpl to files desc.
         """
-        DEBUG.debug("PortHVisitor:%s" % visit_str)
+        DEBUG.debug("PortHVisitor:%s", visit_str)
         DEBUG.debug("===================================")
         DEBUG.debug(c)
         self.__fp.writelines(c.__str__())
@@ -233,9 +229,7 @@ class PortHVisitor(AbstractVisitor.AbstractVisitor):
         if self.__config.get("port", "XMLDefaultFileName") == "True":
             filename = obj.get_type() + self.__config.get("port", "PortH")
             PRINT.info(
-                "Generating code filename: %s, using XML namespace and name attributes..."
-                % filename
-            )
+                "Generating code filename: %s, using XML namespace and name attributes...", filename)
         else:
             xml_file = obj.get_xml_filename()
             x = xml_file.split(".")
@@ -245,9 +239,7 @@ class PortHVisitor(AbstractVisitor.AbstractVisitor):
             if (x[0][-l:] == s[0]) & (x[1] == s[1]):
                 filename = x[0].split(s[0])[0] + self.__config.get("port", "PortH")
                 PRINT.info(
-                    "Generating code filename: %s, using default XML filename prefix..."
-                    % filename
-                )
+                    "Generating code filename: %s, using default XML filename prefix...", filename)
             else:
                 msg = (
                     "XML file naming format not allowed (must be XXXPortAi.xml), Filename: %s"
@@ -257,7 +249,7 @@ class PortHVisitor(AbstractVisitor.AbstractVisitor):
                 raise ValueError(msg)
 
         # Open file for writing here...
-        DEBUG.info("Open file: %s" % filename)
+        DEBUG.info("Open file: %s", filename)
         self.__fp = open(filename, "w")
         if self.__fp is None:
             raise Exception("Could not open %s file.") % filename
