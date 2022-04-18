@@ -1076,8 +1076,7 @@ class Formatters:
             cpos = line_length - comment_max
             apos = line_length - (type_max + 1 + comment_max)
             # always indent args 8 or more spaces
-            if apos < 8:
-                apos = 8
+            apos = max(apos, 8)
             apad = apos * " "
             # always make sure there is a space between args and comment
             if cpos <= apos + type_max + 1:
