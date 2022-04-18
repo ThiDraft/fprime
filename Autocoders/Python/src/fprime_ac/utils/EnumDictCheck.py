@@ -194,7 +194,7 @@ def cmd_dict_enum_size_check(filename, verbose=False):
 
     fd.close()
 
-    if verbose == True:
+    if verbose is True:
         print("Done gathering %d enumerations." % (len(enums)))
         print("Done gathering %d usages." % (len(enum_info)))
 
@@ -213,7 +213,7 @@ def cmd_dict_enum_size_check(filename, verbose=False):
             max_value_16 = 0
             max_fsw_value = 0
 
-            if e.is_signed() == True:
+            if e.is_signed() is True:
                 # Do not include the sign bit for signed numbers
                 signed = 1
                 max_value_8 = 128
@@ -248,7 +248,7 @@ def cmd_dict_enum_size_check(filename, verbose=False):
             else:
                 results.add_key_error()
 
-    if verbose == True:
+    if verbose is True:
         print("Done performing dictionary enumeration check.")
 
     return results
