@@ -223,7 +223,7 @@ class Packet:
             self.err_msg("Missing parameter(s) for identifier")
 
         self.m_name = line[1].strip()
-        if not len(self.m_name):
+        if not self.m_name:
             self.err_msg("Name cannot be blank")
 
         if len(self.m_name.split()) > 1:
@@ -257,7 +257,7 @@ class Packet:
             self.err_msg("Missing parameter(s) for item")
 
         it.m_name = line[1].strip()
-        if not len(it.m_name):
+        if not it.m_name:
             self.err_msg("Name cannot be blank")
 
         if len(it.m_name.split()) > 1:
@@ -356,7 +356,7 @@ class Packet:
         it.m_is_constant = True
 
         it.m_name = line[1].strip()
-        if not len(it.m_name):
+        if not it.m_name:
             self.err_msg("Name cannot be blank")
 
         if len(it.m_name.split()) > 1:
@@ -411,7 +411,7 @@ class Packet:
         global tlm_period
         global verbose
 
-        if not len(self.m_header_list) and not len(self.m_item_list):
+        if not self.m_header_list and not self.m_item_list:
             return
 
         self.m_bytes = (self.m_bit_index + 7) / 8
@@ -531,7 +531,7 @@ class CsvLine:
 
         global tlm_input_line_num
 
-        if not len(line):
+        if not line:
             return
 
         nonblank = False
