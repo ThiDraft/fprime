@@ -124,7 +124,7 @@ class XmlPortsParser:
                     else:
                         p = None
                     if t in ("string", "buffer"):
-                        if not "size" in list(arg.attrib.keys()):
+                        if "size" not in list(arg.attrib.keys()):
                             PRINT.info(
                                 "%s: arg %s string must specify size tag"
                                 % (xml_file, arg.tag)
