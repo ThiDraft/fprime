@@ -78,7 +78,7 @@ class TopologyIDVisitor(AbstractVisitor.AbstractVisitor):
         """
         Wrapper to write tmpl to files desc.
         """
-        DEBUG.debug("TopologyIDVisitor:%s" % visit_str)
+        DEBUG.debug("TopologyIDVisitor:%s", visit_str)
         DEBUG.debug("===================================")
         DEBUG.debug(c)
         self.__fp.writelines(c.__str__())
@@ -101,9 +101,7 @@ class TopologyIDVisitor(AbstractVisitor.AbstractVisitor):
                     "assembly", "TopologyID"
                 )
                 PRINT.info(
-                    "Generating code filename: %s topology, using default XML filename prefix..."
-                    % filename
-                )
+                    "Generating code filename: %s topology, using default XML filename prefix...", filename)
             else:
                 msg = (
                     "XML file naming format not allowed (must be XXXAppAi.xml), Filename: %s"
@@ -113,7 +111,7 @@ class TopologyIDVisitor(AbstractVisitor.AbstractVisitor):
                 raise ValueError(msg)
 
             # Open file for writing here...
-            DEBUG.info("Open file: %s" % filename)
+            DEBUG.info("Open file: %s", filename)
             self.__fp = open(filename, "w")
             if self.__fp is None:
                 raise Exception("Could not open %s file.") % filename

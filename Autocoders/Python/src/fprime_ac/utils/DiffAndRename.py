@@ -224,7 +224,7 @@ def renameAsErroneous(fileName, script=None):
             "{}: this generated file is invalid: {}".format(script, errfileName)
         )
     else:
-        PRINT.error("This generated file is invalid: %s" % errfileName)
+        PRINT.error("This generated file is invalid: %s", errfileName)
 
 
 def test_remove_files(pattern):

@@ -130,7 +130,7 @@ class XmlSerializeParser:
 
         serializable = element_tree.getroot()
         if serializable.tag != "serializable":
-            PRINT.info("%s is not a serializable definition file" % xml_file)
+            PRINT.info("%s is not a serializable definition file", xml_file)
             sys.exit(-1)
 
         print("Parsing Serializable %s" % serializable.attrib["name"])
@@ -162,18 +162,14 @@ class XmlSerializeParser:
                 for member in serializable_tag:
                     if member.tag != "member":
                         PRINT.info(
-                            "%s: Invalid tag %s in serializable member definition"
-                            % (xml_file, member.tag)
-                        )
+                            "%s: Invalid tag %s in serializable member definition", xml_file, member.tag)
                         sys.exit(-1)
                     n = member.attrib["name"]
                     t = member.attrib["type"]
                     if "array_size" in list(member.attrib.keys()):
                         if t == "ENUM":
                             PRINT.info(
-                                "%s: Member %s: arrays of enums not supported yet!"
-                                % (xml_file, n)
-                            )
+                                "%s: Member %s: arrays of enums not supported yet!", xml_file, n)
                             sys.exit(-1)
                         array_size = member.attrib["array_size"]
                         if not array_size.isdigit():
@@ -189,9 +185,7 @@ class XmlSerializeParser:
                     if "size" in list(member.attrib.keys()):
                         if t == "ENUM":
                             PRINT.info(
-                                "%s: Member %s: arrays of enums not supported yet!"
-                                % (xml_file, n)
-                            )
+                                "%s: Member %s: arrays of enums not supported yet!", xml_file, n)
                             sys.exit(-1)
                         size = member.attrib["size"]
                         if not size.isdigit():
@@ -203,9 +197,7 @@ class XmlSerializeParser:
                             sys.exit(-1)
                         if t != "string":
                             PRINT.info(
-                                "%s: Member %s: size is only valid for string members"
-                                % (xml_file, n)
-                            )
+                                "%s: Member %s: size is only valid for string members", xml_file, n)
                             sys.exit(-1)
 
                     else:
@@ -219,9 +211,8 @@ class XmlSerializeParser:
                         else:  # Must be included type, which will use toString method
                             f = "%s"
                     if t == "string" and size is None:
-                        PRINT.info(
-                            "%s: member %s string must specify size tag"
-                            % (xml_file, member.tag)
+                            PRINT.info(
+                                "%s: member %s string must specify size tag", xml_file, member.tag)
                         )
                         sys.exit(-1)
 
@@ -252,9 +243,7 @@ class XmlSerializeParser:
                             d = member_tag.text
                         else:
                             PRINT.info(
-                                "%s: Invalid member tag %s in serializable member %s"
-                                % (xml_file, member_tag.tag, n)
-                            )
+                                "%s: Invalid member tag %s in serializable member %s", xml_file, member_tag.tag, n)
                             sys.exit(-1)
 
                     self.__members.append((n, t, array_size, size, f, c, d))

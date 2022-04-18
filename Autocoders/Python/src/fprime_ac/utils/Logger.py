@@ -109,8 +109,8 @@ def connectDebugLogger(
     if level is None:
         level = 0
     logger.setLevel(level)
-    logger.info("Log file set to: %s" % file)
-    logger.info("Logging level is %s" % level)
-    logger.info("%s author: Leonard J. Reder" % sys.argv[0])
+    logger.info("Log file set to: %s", file)
+    logger.info("Logging level is %s", level)
+    logger.info("%s author: Leonard J. Reder", sys.argv[0])
     logger.info("Email: reder@jpl.nasa.gov")
     return logger

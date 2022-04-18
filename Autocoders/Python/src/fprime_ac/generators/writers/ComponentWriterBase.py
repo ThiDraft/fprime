@@ -63,7 +63,7 @@ class ComponentWriterBase(AbstractWriter.AbstractWriter):
         """
         Wrapper to write tmpl to files desc.
         """
-        DEBUG.debug("ComponentWriterBase:%s" % write_str)
+        DEBUG.debug("ComponentWriterBase:%s", write_str)
         DEBUG.debug("===================================")
         DEBUG.debug(c)
         self.__fp.writelines(c.__str__())
@@ -92,9 +92,7 @@ class ComponentWriterBase(AbstractWriter.AbstractWriter):
                 + self.config("component", self.__writer)
             )
             DEBUG.info(
-                "Generating code filename: %s, using XML namespace and name attributes..."
-                % filename
-            )
+                "Generating code filename: %s, using XML namespace and name attributes...", filename)
         else:
             xml_file = obj.get_xml_filename()
             x = xml_file.split(".")
@@ -102,7 +100,7 @@ class ComponentWriterBase(AbstractWriter.AbstractWriter):
             l = len(s[0])
             if (x[0][-l:] == s[0]) & (x[1] == s[1]):
                 filename = x[0].split(s[0])[0] + self.config("component", self.__writer)
-                DEBUG.info("Generating code filename: %s..." % filename)
+                DEBUG.info("Generating code filename: %s...", filename)
             else:
                 msg = (
                     "XML file naming format not allowed (must be XXXComponentAi.xml), Filename: %s"
@@ -871,7 +869,7 @@ class ComponentWriterBase(AbstractWriter.AbstractWriter):
         """
         Open the file for writing
         """
-        DEBUG.info("Open file: %s" % filename)
+        DEBUG.info("Open file: %s", filename)
         self.__fp = open(filename, "w")
         if self.__fp is None:
             raise Exception("Could not open file %s") % filename
@@ -933,9 +931,7 @@ class ComponentWriterBase(AbstractWriter.AbstractWriter):
             relative_path = build_root_relative_path(path)
         except BuildRootMissingException as bre:
             PRINT.info(
-                "ERROR: BUILD_ROOT and current execution path (%s) not consistent! %s"
-                % (path, str(bre))
-            )
+                "ERROR: BUILD_ROOT and current execution path (%s) not consistent! %s", path, str(bre))
             sys.exit(-1)
         DEBUG.debug("Relative path: %s", relative_path)
         return relative_path

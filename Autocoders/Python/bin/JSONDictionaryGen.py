@@ -102,7 +102,7 @@ def main():
     #  Parse the input Component XML file and create internal meta-model
     #
     if len(args) == 0:
-        PRINT.info("\nUsage: %s [options] xml_filename" % sys.argv[0])
+        PRINT.info("\nUsage: %s [options] xml_filename", sys.argv[0])
         PRINT.info("ERROR: Cannot create dictionary\n")
         sys.exit(-1)
         return
@@ -328,7 +328,7 @@ def main():
     outFile.write(json_str)
     descriptionFile = open(descriptionFilename, "w")
     descriptionFile.write(outFilepath)
-    PRINT.info("\nJSON output written to %s" % outFilepath)
+    PRINT.info("\nJSON output written to %s", outFilepath)
     outFile.close()
 
 

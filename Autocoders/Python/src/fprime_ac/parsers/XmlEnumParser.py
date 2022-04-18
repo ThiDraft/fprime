@@ -91,7 +91,7 @@ class XmlEnumParser:
 
         enum = element_tree.getroot()
         if enum.tag != "enum":
-            PRINT.info("%s is not an enum definition file" % xml_file)
+            PRINT.info("%s is not an enum definition file", xml_file)
             sys.exit(-1)
 
         print("Parsing Enum %s" % enum.attrib["name"])

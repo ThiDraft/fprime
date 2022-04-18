@@ -79,7 +79,7 @@ class CommandVisitor(AbstractVisitor.AbstractVisitor):
         """
         Wrapper to write tmpl to files desc.
         """
-        DEBUG.debug("CommandVisitor:%s" % visit_str)
+        DEBUG.debug("CommandVisitor:%s", visit_str)
         DEBUG.debug("===================================")
         DEBUG.debug(c)
         fp.writelines(c.__str__())
@@ -116,11 +116,11 @@ class CommandVisitor(AbstractVisitor.AbstractVisitor):
                 for opcode in obj.get_opcodes():
                     pyfile = "%s/%s_%d.py" % (output_dir, obj.get_mnemonic(), inst)
                     inst += 1
-                    DEBUG.info("Open file: %s" % pyfile)
+                    DEBUG.info("Open file: %s", pyfile)
                     fd = open(pyfile, "w")
                     if fd is None:
                         raise Exception("Could not open %s file." % pyfile)
-                    DEBUG.info("Completed %s open" % pyfile)
+                    DEBUG.info("Completed %s open", pyfile)
                     self.__fp1.append(fd)
         elif type(obj) is Parameter.Parameter:
             self.__fp1 = list()
@@ -147,21 +147,21 @@ class CommandVisitor(AbstractVisitor.AbstractVisitor):
                 inst = 0
                 for opcode in obj.get_set_opcodes():
                     pyfile = "%s/%s_%d_PRM_SET.py" % (output_dir, self.__stem, inst)
-                    DEBUG.info("Open file: %s" % pyfile)
+                    DEBUG.info("Open file: %s", pyfile)
                     fd = open(pyfile, "w")
                     if fd is None:
                         raise Exception("Could not open %s file." % pyfile)
                     self.__fp1.append(fd)
-                    DEBUG.info("Completed %s open" % pyfile)
+                    DEBUG.info("Completed %s open", pyfile)
 
                     pyfile = "%s/%s_%d_PRM_SAVE.py" % (output_dir, self.__stem, inst)
-                    DEBUG.info("Open file: %s" % pyfile)
+                    DEBUG.info("Open file: %s", pyfile)
                     fd = open(pyfile, "w")
                     if fd is None:
                         raise Exception("Could not open %s file." % pyfile)
                     self.__fp2.append(fd)
                     inst += 1
-                    DEBUG.info("Completed %s open" % pyfile)
+                    DEBUG.info("Completed %s open", pyfile)
 
         else:
             print("Invalid type %s" % type(obj))

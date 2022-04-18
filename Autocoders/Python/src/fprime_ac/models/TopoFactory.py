@@ -388,14 +388,11 @@ class TopoFactory:
         if assembly_base_id is None:
             assembly_base_id = self.__config.get("assembly", "baseID")
             PRINT.info(
-                "WARNING: No assembly base Id set, defaulting to %s" % assembly_base_id
-            )
+                "WARNING: No assembly base Id set, defaulting to %s", assembly_base_id)
         if assembly_window is None:
             assembly_window = self.__config.get("assembly", "window")
             PRINT.info(
-                "WARNING: No assembly base Id window size set, defaulting to %s"
-                % assembly_window
-            )
+                "WARNING: No assembly base Id window size set, defaulting to %s", assembly_window)
 
         out_base_ids_list = []
 
@@ -644,7 +641,7 @@ class TopoFactory:
                 )
             else:
                 b = abs(int(inst.get_base_id(), 0))
-            PRINT.info("WARNING: %s instance resetting base id to %d" % (n, b))
+            PRINT.info("WARNING: %s instance resetting base id to %d", n, b)
         #
         # set window size or override it on instance basis
 

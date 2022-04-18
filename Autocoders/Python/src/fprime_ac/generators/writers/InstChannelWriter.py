@@ -76,7 +76,7 @@ class InstChannelWriter(AbstractDictWriter.AbstractDictWriter):
         """
         Wrapper to write tmpl to files desc.
         """
-        DEBUG.debug("ChannelWriter:%s" % write_str)
+        DEBUG.debug("ChannelWriter:%s", write_str)
         DEBUG.debug("===================================")
         DEBUG.debug(c)
         fp.writelines(c.__str__())

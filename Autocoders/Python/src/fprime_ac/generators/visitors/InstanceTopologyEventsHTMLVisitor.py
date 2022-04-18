@@ -83,7 +83,7 @@ class InstanceTopologyEventsHTMLVisitor(AbstractVisitor.AbstractVisitor):
         """
         Wrapper to write tmpl to files desc.
         """
-        DEBUG.debug("InstanceTopologyHTMLVisitor:%s" % visit_str)
+        DEBUG.debug("InstanceTopologyHTMLVisitor:%s", visit_str)
         DEBUG.debug("===================================")
         DEBUG.debug(c)
         self.__fp_dict[instance].writelines(c.__str__())
@@ -111,17 +111,15 @@ class InstanceTopologyEventsHTMLVisitor(AbstractVisitor.AbstractVisitor):
                 if len(events_list) > 0:
                     filename = "%s_events.html" % t[0]
                     # Open file for writing here...
-                    DEBUG.info("Open file: %s" % filename)
+                    DEBUG.info("Open file: %s", filename)
                     try:
                         self.__fp_dict[name] = open(filename, "w")
                         DEBUG.info("Completed")
                     except OSError:
-                        PRINT.info("Could not open %s file." % filename)
+                        PRINT.info("Could not open %s file.", filename)
                         sys.exit(-1)
                     DEBUG.info(
-                        "Generating HTML Event Table for %s:%s component instance..."
-                        % (t[0], k)
-                    )
+                        "Generating HTML Event Table for %s:%s component instance...", t[0], k)
         os.chdir("..")
 
     def startSourceFilesVisit(self, obj):

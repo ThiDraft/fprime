@@ -375,14 +375,13 @@ class Parser:
                 try:
                     found[childName] += 1
                     DEBUG.debug(
-                        "duplicate %s for %d time" % (childName, found[childName])
-                    )
+                        "duplicate %s for %d time", childName, found[childName])
                 except KeyError:
                     found[childName] = 1
-                    DEBUG.debug("first %s" % childName)
+                    DEBUG.debug("first %s", childName)
             else:
                 unexpectedChildren.append(childName)
-                DEBUG.debug("unexpected %s" % childName)
+                DEBUG.debug("unexpected %s", childName)
 
         return (found, unexpectedChildren, errMsg)
 
