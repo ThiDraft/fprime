@@ -126,7 +126,6 @@ def parse_component(the_parsed_component_xml, xml_filename, opt):
         port_file = search_for_file("Port", port_file)
         xml_parser_obj = XmlPortsParser.XmlPortsParser(port_file)
         parsed_port_xml_list.append(xml_parser_obj)
-        del xml_parser_obj
 
     parsed_serializable_xml_list = []
     #
@@ -150,7 +149,6 @@ def parse_component(the_parsed_component_xml, xml_filename, opt):
             sys.exit(-1)
 
         parsed_serializable_xml_list.append(xml_parser_obj)
-        del xml_parser_obj
 
     model = CompFactory.CompFactory.getInstance()
     component_model = model.create(

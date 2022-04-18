@@ -492,7 +492,6 @@ def generate_component_instance_dictionary(
         xml_parser_obj = XmlPortsParser.XmlPortsParser(port_file)
         # print xml_parser_obj.get_args()
         parsed_port_xml_list.append(xml_parser_obj)
-        del xml_parser_obj
 
     serializable_type_files_list = (
         the_parsed_component_xml.get_serializable_type_files()
@@ -512,7 +511,6 @@ def generate_component_instance_dictionary(
 
         # print xml_parser_obj.get_args()
         parsed_serializable_xml_list.append(xml_parser_obj)
-        del xml_parser_obj
 
     generator = CompFactory.CompFactory.getInstance()
     component_model = generator.create(
@@ -660,7 +658,6 @@ def generate_component(
         xml_parser_obj = XmlPortsParser.XmlPortsParser(port_file)
         # print xml_parser_obj.get_args()
         parsed_port_xml_list.append(xml_parser_obj)
-        del xml_parser_obj
 
     parsed_serializable_xml_list = []
     #
@@ -684,7 +681,6 @@ def generate_component(
 
         # print xml_parser_obj.get_args()
         parsed_serializable_xml_list.append(xml_parser_obj)
-        del xml_parser_obj
 
     #
     # for p in the_parsed_component_xml.get_ports():
