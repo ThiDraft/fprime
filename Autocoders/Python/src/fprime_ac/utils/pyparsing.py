@@ -581,11 +581,10 @@ class ParserElement:
 
     DEFAULT_WHITE_CHARS = " \n\t\r"
 
+    @staticmethod
     def setDefaultWhitespaceChars(chars):
         """Overrides the default whitespace chars"""
         ParserElement.DEFAULT_WHITE_CHARS = chars
-
-    setDefaultWhitespaceChars = staticmethod(setDefaultWhitespaceChars)
 
     def __init__(self, savelist=False):
         self.parseAction = list()
@@ -636,6 +635,7 @@ class ParserElement:
         newself.modalResults = not listAllMatches
         return newself
 
+    @staticmethod
     def normalizeParseActionArgs(f):
         """Internal method used to decorate parse actions that take fewer than 3 arguments,
         so that all parse actions can be called as f(s,l,t)."""
@@ -690,8 +690,6 @@ class ParserElement:
                     return f()
 
             return tmp
-
-    normalizeParseActionArgs = staticmethod(normalizeParseActionArgs)
 
     def setParseAction(self, *fns):
         """Define action to perform when successfully matching parse element definition.
@@ -869,13 +867,13 @@ class ParserElement:
     # argument cache for optimizing repeated calls when backtracking through recursive expressions
     _exprArgCache = {}
 
+    @staticmethod
     def resetCache():
         ParserElement._exprArgCache.clear()
 
-    resetCache = staticmethod(resetCache)
-
     _packratEnabled = False
 
+    @staticmethod
     def enablePackrat():
         """Enables "packrat" parsing, which adds memoizing to the parsing logic.
         Repeated parse attempts at the same string location (which happens
@@ -895,8 +893,6 @@ class ParserElement:
         if not ParserElement._packratEnabled:
             ParserElement._packratEnabled = True
             ParserElement._parse = ParserElement._parseCache
-
-    enablePackrat = staticmethod(enablePackrat)
 
     def parseString(self, instring):
         """Execute the parse expression with the given string.
@@ -1318,11 +1314,10 @@ class Keyword(Token):
         c.identChars = Keyword.DEFAULT_KEYWORD_CHARS
         return c
 
+    @staticmethod
     def setDefaultKeywordChars(chars):
         """Overrides the default Keyword chars"""
         Keyword.DEFAULT_KEYWORD_CHARS = chars
-
-    setDefaultKeywordChars = staticmethod(setDefaultKeywordChars)
 
 
 class CaselessLiteral(Literal):
