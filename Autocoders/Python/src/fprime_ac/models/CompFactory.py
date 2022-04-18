@@ -376,21 +376,23 @@ class CompFactory:
 
         # check some component/port rules
         # 1) Active or queued need at least one async port/command
-        if comp_kind in ("active", "queued"):
-            if num_async_ports == 0 and len(parameter_obj_list) == 0:
-                PRINT.info(
-                    'ERROR: %s: Active/Queued component "%s" needs at least one async port, command, or interface'
-                    % (the_parsed_component_xml.get_xml_filename(), comp_name)
-                )
-                sys.exit(-1)
+        if (
+            comp_kind in ("active", "queued")
+            and num_async_ports == 0
+            and len(parameter_obj_list) == 0
+        ):
+            PRINT.info(
+                'ERROR: %s: Active/Queued component "%s" needs at least one async port, command, or interface'
+                % (the_parsed_component_xml.get_xml_filename(), comp_name)
+            )
+            sys.exit(-1)
         # 2) Queued component needs at least one sync port/command
-        if comp_kind == "queued":
-            if num_sync_ports == 0:
-                PRINT.info(
-                    'ERROR: %s: Queued component "%s" needs at least one sync/guarded port or command'
-                    % (the_parsed_component_xml.get_xml_filename(), comp_name)
-                )
-                sys.exit(-1)
+        if comp_kind == "queued" and num_sync_ports == 0:
+            PRINT.info(
+                'ERROR: %s: Queued component "%s" needs at least one sync/guarded port or command'
+                % (the_parsed_component_xml.get_xml_filename(), comp_name)
+            )
+            sys.exit(-1)
 
         parsed_array_list = []
         for array_file in the_parsed_component_xml.get_array_type_files():

@@ -218,13 +218,12 @@ class XmlSerializeParser:
                             f = format_dictionary[t]
                         else:  # Must be included type, which will use toString method
                             f = "%s"
-                    if t == "string":
-                        if size is None:
-                            PRINT.info(
-                                "%s: member %s string must specify size tag"
-                                % (xml_file, member.tag)
-                            )
-                            sys.exit(-1)
+                    if t == "string" and size is None:
+                        PRINT.info(
+                            "%s: member %s string must specify size tag"
+                            % (xml_file, member.tag)
+                        )
+                        sys.exit(-1)
 
                     if "comment" in list(member.attrib.keys()):
                         c = member.attrib["comment"]

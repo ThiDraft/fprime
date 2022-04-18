@@ -1308,15 +1308,14 @@ def main():
             PRINT.info("Invalid XML found...this format not supported")
             ERROR = True
 
-        if opt.dependency_file is not None:
-            if opt.build_root_flag:
-                generate_dependency_file(
-                    opt.dependency_file,
-                    os.path.basename(xml_filename),
-                    list(get_build_roots())[0],
-                    dependency_parser,
-                    xml_type,
-                )
+        if opt.dependency_file is not None and opt.build_root_flag:
+            generate_dependency_file(
+                opt.dependency_file,
+                os.path.basename(xml_filename),
+                list(get_build_roots())[0],
+                dependency_parser,
+                xml_type,
+            )
 
     # Always return to directory where we started.
     os.chdir(starting_directory)

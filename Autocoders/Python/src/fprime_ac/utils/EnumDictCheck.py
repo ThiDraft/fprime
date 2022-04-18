@@ -115,10 +115,9 @@ def cmd_dict_enum_size_check(filename, verbose=False):
     must match the size of the enumerated argument.
     """
 
-    if not os.path.exists(filename):
-        if verbose is True:
-            print("The specified dictionary does not exist: %s" % (filename))
-            return None
+    if not os.path.exists(filename) and verbose == True:
+        print("The specified dictionary does not exist: %s" % (filename))
+        return None
 
     enum_info = {}
     enums = {}

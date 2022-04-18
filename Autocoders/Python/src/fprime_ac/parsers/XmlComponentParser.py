@@ -1005,14 +1005,16 @@ class XmlComponentParser:
                     param["ParamSet"] = True
 
             ## Check for Telemetry
-            if has_telemetry:
-                if port.get_role() == "Telemetry":
-                    Telemetry = True
+            if has_telemetry and port.get_role() == "Telemetry":
+                Telemetry = True
 
             ## Check for Time
-            if has_telemetry or has_events:
-                if port.get_role() == "TimeGet":
-                    Time = True
+            if (
+                has_telemetry
+                or has_events
+                and port.get_role() == "TimeGet"
+            ):
+                Time = True
 
             ## Check Log(Text)Event
             if has_events:
