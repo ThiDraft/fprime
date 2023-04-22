@@ -138,7 +138,7 @@ class SerialCppVisitor(AbstractVisitor.AbstractVisitor):
         """
         Return a list of struct member tuples
         """
-        arg_list = list()
+        arg_list = []
 
         for (
             name,
@@ -223,8 +223,7 @@ class SerialCppVisitor(AbstractVisitor.AbstractVisitor):
                 + self.__config.get("serialize", "SerializableCpp")
             )
             PRINT.info(
-                "Generating code filename: %s, using XML namespace and name attributes..."
-                % filename
+                f"Generating code filename: {filename}, using XML namespace and name attributes..."
             )
         else:
             xml_file = obj.get_xml_filename()
@@ -251,8 +250,6 @@ class SerialCppVisitor(AbstractVisitor.AbstractVisitor):
         # Open file for writing here...
         DEBUG.info("Open file: %s" % filename)
         self.__fp = open(filename, "w")
-        if self.__fp is None:
-            raise Exception("Could not open %s file.") % filename
         DEBUG.info("Completed")
 
     def startSourceFilesVisit(self, obj):

@@ -15,8 +15,10 @@
 \#include "Fw/Types/Assert.hpp"
 \#include "${name}EnumAc.hpp"
 
-#if $namespace
+#if $namespace_list != None
+ #for $namespace in $namespace_list
 namespace ${namespace} {
+ #end for
 #end if
 
   // ----------------------------------------------------------------------
@@ -52,13 +54,19 @@ namespace ${namespace} {
     return *this;
   }
 
+  ${name}& ${name} :: operator=(const t a)
+  {
+    this->e = a;
+    return *this;
+  }
+
   ${name}& ${name} :: operator=(const NATIVE_INT_TYPE a)
   {
+#set $manual_values = False
 #for $item_name,$item_value,$item_comment in $items_list:
 #if not $item_value == ""
 #set $manual_values = True
-#else
-#set $manual_values = False
+#break
 #end if
 #end for
 #if $manual_values == True
@@ -82,11 +90,11 @@ a == $item_value#slurp
 
   ${name}& ${name} :: operator=(const NATIVE_UINT_TYPE a)
   {
+#set $manual_values = False
 #for $item_name,$item_value,$item_comment in $items_list:
 #if not $item_value == ""
 #set $manual_values = True
-#else
-#set $manual_values = False
+#break
 #end if
 #end for
 #if $manual_values == True
@@ -180,6 +188,8 @@ a == $item_value#slurp
   }
   \#endif
 
-#if $namespace
-}
+#if $namespace_list != None
+ #for $namespace in $reversed($namespace_list)
+} // end namespace $namespace
+ #end for
 #end if

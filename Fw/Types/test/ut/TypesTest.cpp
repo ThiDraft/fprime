@@ -1,4 +1,4 @@
-#include <Fw/Types/BasicTypes.hpp>
+#include <FpConfig.hpp>
 #include <Fw/Types/Serializable.hpp>
 #include <Os/IntervalTimer.hpp>
 #include <Os/InterruptLock.hpp>
@@ -7,7 +7,6 @@
 #include <Fw/Types/InternalInterfaceString.hpp>
 #include <Fw/Types/PolyType.hpp>
 #include <Fw/Types/MallocAllocator.hpp>
-#include <Fw/Types/AlignedAllocator.hpp>
 //
 // Created by mstarch on 12/7/20.
 //
@@ -728,12 +727,12 @@ void AssertTest() {
                                 FILE_NAME_ARG file,
                                 NATIVE_UINT_TYPE lineNo,
                                 NATIVE_UINT_TYPE numArgs,
-                                AssertArg arg1,
-                                AssertArg arg2,
-                                AssertArg arg3,
-                                AssertArg arg4,
-                                AssertArg arg5,
-                                AssertArg arg6
+                                FwAssertArgType arg1,
+                                FwAssertArgType arg2,
+                                FwAssertArgType arg3,
+                                FwAssertArgType arg4,
+                                FwAssertArgType arg5,
+                                FwAssertArgType arg6
                                 ) {
                 this->m_file = file;
                 this->m_lineNo = lineNo;
@@ -763,27 +762,27 @@ void AssertTest() {
                 return this->m_numArgs;
             }
 
-            AssertArg getArg1() {
+            FwAssertArgType getArg1() {
                 return this->m_arg1;
             }
 
-            AssertArg getArg2() {
+            FwAssertArgType getArg2() {
                 return this->m_arg2;
             }
 
-            AssertArg getArg3() {
+            FwAssertArgType getArg3() {
                 return this->m_arg3;
             }
 
-            AssertArg getArg4() {
+            FwAssertArgType getArg4() {
                 return this->m_arg4;
             }
 
-            AssertArg getArg5() {
+            FwAssertArgType getArg5() {
                 return this->m_arg5;
             }
 
-            AssertArg getArg6() {
+            FwAssertArgType getArg6() {
                 return this->m_arg6;
             }
 
@@ -796,15 +795,19 @@ void AssertTest() {
 
         private:
 
+#if FW_ASSERT_LEVEL == FW_FILEID_ASSERT
+            FILE_NAME_ARG m_file = 0;
+#else
             FILE_NAME_ARG m_file = nullptr;
+#endif
             NATIVE_UINT_TYPE m_lineNo = 0;
             NATIVE_UINT_TYPE m_numArgs = 0;
-            AssertArg m_arg1 = 0;
-            AssertArg m_arg2 = 0;
-            AssertArg m_arg3 = 0;
-            AssertArg m_arg4 = 0;
-            AssertArg m_arg5 = 0;
-            AssertArg m_arg6 = 0;
+            FwAssertArgType m_arg1 = 0;
+            FwAssertArgType m_arg2 = 0;
+            FwAssertArgType m_arg3 = 0;
+            FwAssertArgType m_arg4 = 0;
+            FwAssertArgType m_arg5 = 0;
+            FwAssertArgType m_arg6 = 0;
             bool m_asserted = false;
 
     };
@@ -1177,53 +1180,6 @@ TEST(AllocatorTest,MallocAllocatorTest) {
     ASSERT_FALSE(recoverable);
     // deallocate memory
     allocator.deallocate(100,ptr);
-}
-
-TEST(AllocatorTest,AlignedAllocatorTest) {
-
-    // spot check some alignments, but it really depends on the underlying C library
-    // Note that these may be false positives depending on the underlying heap scheme
-
-    // Test alignment 2 
-    Fw::AlignedAllocator allocator_2(2*sizeof(void*));
-    NATIVE_UINT_TYPE size = 4*sizeof(void*); // one hundred bytes
-    bool recoverable;
-    void *ptr = allocator_2.allocate(10,size,recoverable);
-    ASSERT_EQ(4*sizeof(void*),size);
-    ASSERT_NE(ptr,nullptr);
-    ASSERT_FALSE(recoverable);
-    // verify alignment
-    POINTER_CAST ptrVal = reinterpret_cast<POINTER_CAST>(ptr);
-    ASSERT_EQ(ptrVal,ptrVal&~0x1);
-    // deallocate memory
-    allocator_2.deallocate(10,ptr);
-
-    // Test alignment 4 
-    Fw::AlignedAllocator allocator_4(4*sizeof(void*));
-    size = 8*sizeof(void*); // one hundred bytes
-    ptr = allocator_4.allocate(10,size,recoverable);
-    ASSERT_EQ(8*sizeof(void*),size);
-    ASSERT_NE(ptr,nullptr);
-    ASSERT_FALSE(recoverable);
-    // verify alignment
-    ptrVal = reinterpret_cast<POINTER_CAST>(ptr);
-    ASSERT_EQ(ptrVal,ptrVal&~0x3);
-    // deallocate memory
-    allocator_4.deallocate(10,ptr);
-
-    // Test alignment 32 
-    Fw::AlignedAllocator allocator_32(32*sizeof(void*));
-    size = 64*sizeof(void*); // one hundred bytes
-    ptr = allocator_32.allocate(10,size,recoverable);
-    ASSERT_EQ(64*sizeof(void*),size);
-    ASSERT_NE(ptr,nullptr);
-    ASSERT_FALSE(recoverable);
-    // verify alignment
-    ptrVal = reinterpret_cast<POINTER_CAST>(ptr);
-    ASSERT_EQ(ptrVal,ptrVal&~0x1F);
-    // deallocate memory
-    allocator_32.deallocate(10,ptr);
-
 }
 
 TEST(Nominal, string_copy) {
